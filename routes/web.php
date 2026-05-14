@@ -132,6 +132,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/research-hub', [\App\Http\Controllers\ResearchHubController::class, 'index'])->name('research-hub.index');
     Route::get('/research-hub/{project}', [\App\Http\Controllers\ResearchHubController::class, 'show'])->name('research-hub.show');
     Route::post('/research-hub', [\App\Http\Controllers\ResearchHubController::class, 'store'])->name('research-hub.store');
+
+    // Expert Finder
+    Route::get('/experts', [\App\Http\Controllers\ExpertFinderController::class, 'index'])->name('experts.index');
+    Route::get('/experts/{user}', [\App\Http\Controllers\ExpertFinderController::class, 'show'])->name('experts.show');
+
+    // Partnerships (MoU Management)
+    Route::get('/partnerships', [\App\Http\Controllers\PartnershipController::class, 'index'])->name('partnerships.index');
+    Route::get('/partnerships/{partnership}', [\App\Http\Controllers\PartnershipController::class, 'show'])->name('partnerships.show');
+    Route::post('/partnerships', [\App\Http\Controllers\PartnershipController::class, 'store'])->name('partnerships.store');
 });
 
 require __DIR__.'/auth.php';

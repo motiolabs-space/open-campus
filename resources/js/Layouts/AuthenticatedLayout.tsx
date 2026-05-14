@@ -61,6 +61,10 @@ export default function AuthenticatedLayout({
                                 <span className="material-symbols-outlined">analytics</span>
                                 <span className="text-[10px] font-label-md">IKU Report</span>
                             </Link>
+                            <Link href={route('partnerships.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                <span className="material-symbols-outlined">handshake</span>
+                                <span className="text-[10px] font-label-md">Partnerships</span>
+                            </Link>
                             <Link href={route('tracer.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
                                 <span className="material-symbols-outlined">history_edu</span>
                                 <span className="text-[10px] font-label-md">Tracer Study</span>
