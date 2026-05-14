@@ -39,20 +39,20 @@ Dashboard analitik tingkat tinggi yang menyajikan matriks performa institusi sec
 
 OSCN memfasilitasi pelaporan 12 Indikator Kinerja Utama sesuai dengan kerangka **"Diktisaintek Berdampak"**:
 
-| Kategori | Indikator IKU | Penjelasan Singkat |
-| :--- | :--- | :--- |
-| **Wajib** | **IKU 1: Kesiapan Lulusan** | Persentase lulusan yang bekerja, berwirausaha, atau studi lanjut. |
-| **Wajib** | **IKU 2: Pengalaman Luar Kampus** | Mahasiswa yang mendapat pengalaman minimal 20 SKS di luar kampus. |
-| **Wajib** | **IKU 3: Dosen di Luar Kampus** | Dosen yang berkegiatan di industri atau kampus lain yang bereputasi. |
-| **Wajib** | **IKU 4: Praktisi Mengajar** | Keterlibatan tenaga ahli industri dalam pembelajaran di kelas. |
-| **Wajib** | **IKU 5: Hasil Kerja Dosen** | Rekognisi internasional dan pemanfaatan hasil riset oleh masyarakat. |
-| **Wajib** | **IKU 6: Kemitraan Prodi** | Kerjasama program studi dengan mitra kelas dunia. |
-| **Wajib** | **IKU 7: Kelas Kolaboratif** | Metode pembelajaran yang partisipatif dan berbasis proyek (Case Method/PBL). |
-| **Wajib** | **IKU 8: Akreditasi Internasional** | Persentase program studi yang memiliki sertifikasi/akreditasi internasional. |
-| **Pilihan** | **IKU 9: Dampak SDGs** | Kontribusi institusi terhadap Sustainable Development Goals dan masalah sosial. |
-| **Pilihan** | **IKU 10: Hilirisasi Inovasi** | Jumlah produk inovasi yang berhasil dikomersialkan atau digunakan industri. |
-| **Pilihan** | **IKU 11: Efisiensi Edukasi** | Optimalisasi proses bisnis kampus dan pemerataan akses pendidikan. |
-| **Partisipatif** | **IKU 12: Inisiatif Kampus** | Program inovasi mandiri perguruan tinggi yang memberikan dampak nyata. |
+| Indikator IKU | Penjelasan Singkat |
+| :--- | :--- |
+| **IKU 1: Kesiapan Lulusan** | Persentase lulusan yang bekerja, berwirausaha, atau studi lanjut. |
+| **IKU 2: Pengalaman Luar Kampus** | Mahasiswa yang mendapat pengalaman minimal 20 SKS di luar kampus. |
+| **IKU 3: Dosen di Luar Kampus** | Dosen yang berkegiatan di industri atau kampus lain yang bereputasi. |
+| **IKU 4: Praktisi Mengajar** | Keterlibatan tenaga ahli industri dalam pembelajaran di kelas. |
+| **IKU 5: Hasil Kerja Dosen** | Rekognisi internasional dan pemanfaatan hasil riset oleh masyarakat. |
+| **IKU 6: Kemitraan Prodi** | Kerjasama program studi dengan mitra kelas dunia. |
+| **IKU 7: Kelas Kolaboratif** | Metode pembelajaran yang partisipatif dan berbasis proyek (Case Method/PBL). |
+| **IKU 8: Akreditasi Internasional** | Persentase program studi yang memiliki sertifikasi/akreditasi internasional. |
+| **IKU 9: Dampak SDGs** | Kontribusi institusi terhadap Sustainable Development Goals dan masalah sosial. |
+| **IKU 10: Hilirisasi Inovasi** | Jumlah produk inovasi yang berhasil dikomersialkan atau digunakan industri. |
+| **IKU 11: Efisiensi Edukasi** | Optimalisasi proses bisnis kampus dan pemerataan akses pendidikan. |
+| **IKU 12: Inisiatif Kampus** | Program inovasi mandiri perguruan tinggi yang memberikan dampak nyata. |
 
 ---
 
