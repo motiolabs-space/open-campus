@@ -8,23 +8,46 @@ dayjs.extend(relativeTime);
 
 export default function NetworkIndex({ posts }: any) {
     const { auth, appName } = usePage().props as any;
+    const sdgs = [
+        { id: 1, name: 'No Poverty', color: '#E5243B' },
+        { id: 2, name: 'Zero Hunger', color: '#DDA63A' },
+        { id: 3, name: 'Good Health', color: '#4C9F38' },
+        { id: 4, name: 'Quality Education', color: '#C5192D' },
+        { id: 5, name: 'Gender Equality', color: '#FF3A21' },
+        { id: 6, name: 'Clean Water', color: '#26BDE2' },
+        { id: 7, name: 'Clean Energy', color: '#FCC30B' },
+        { id: 8, name: 'Decent Work', color: '#A21942' },
+        { id: 9, name: 'Industry & Innovation', color: '#FD6925' },
+        { id: 10, name: 'Reduced Inequality', color: '#DD1367' },
+        { id: 11, name: 'Sustainable Cities', color: '#FD9D24' },
+        { id: 12, name: 'Responsible Consumption', color: '#BF8B2E' },
+        { id: 13, name: 'Climate Action', color: '#3F7E44' },
+        { id: 14, name: 'Life Below Water', color: '#0A97D9' },
+        { id: 15, name: 'Life on Land', color: '#56C02B' },
+        { id: 16, name: 'Peace & Justice', color: '#00689D' },
+        { id: 17, name: 'Partnerships', color: '#19486A' },
+    ];
+
     const { data, setData, post, processing, reset, errors } = useForm({
         content: '',
+        sdg_tag: null as number | null,
     });
 
     const [commentData, setCommentData] = useState<{ [key: number]: string }>({});
+    const [showSdgPicker, setShowSdgPicker] = useState(false);
 
     const submitPost: FormEventHandler = (e) => {
         e.preventDefault();
         post(route('network.store'), {
-            onSuccess: () => reset('content'),
+            onSuccess: () => {
+                reset('content', 'sdg_tag');
+                setShowSdgPicker(false);
+            },
         });
     };
 
     const submitComment = (e: React.FormEvent, postId: number) => {
         e.preventDefault();
-        // Since we can't use useForm hook dynamically in a loop easily without a sub-component, 
-        // we'll use Inertia's manual post for comments.
         import('@inertiajs/react').then(({ router }) => {
             router.post(route('network.comment', postId), {
                 content: commentData[postId] || '',
@@ -98,22 +121,44 @@ export default function NetworkIndex({ posts }: any) {
                                 <div className="h-10 w-10 flex-shrink-0 bg-primary/10 text-primary rounded-full flex items-center justify-center font-bold">
                                     {auth.user.name.charAt(0).toUpperCase()}
                                 </div>
-                                <textarea
-                                    className="flex-1 bg-surface-container-low border-none rounded-xl resize-none text-sm p-3 focus:ring-2 focus:ring-primary min-h-[80px]"
-                                    placeholder="Write your thoughts, share research, or ask a question..."
-                                    value={data.content}
-                                    onChange={e => setData('content', e.target.value)}
-                                    required
-                                ></textarea>
+                                <div className="flex-1 space-y-3">
+                                    <textarea
+                                        className="w-full bg-surface-container-low border-none rounded-xl resize-none text-sm p-3 focus:ring-2 focus:ring-primary min-h-[80px]"
+                                        placeholder="Share impact, research, or campus updates..."
+                                        value={data.content}
+                                        onChange={e => setData('content', e.target.value)}
+                                        required
+                                    ></textarea>
+                                    
+                                    {data.sdg_tag && (
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Tagged SDG:</span>
+                                            <div 
+                                                className="px-3 py-1 rounded-full text-white text-[10px] font-bold flex items-center gap-1.5 animate-in zoom-in-90"
+                                                style={{ backgroundColor: sdgs.find(s => s.id === data.sdg_tag)?.color }}
+                                            >
+                                                <span>SDG {data.sdg_tag}: {sdgs.find(s => s.id === data.sdg_tag)?.name}</span>
+                                                <button type="button" onClick={() => setData('sdg_tag', null)} className="hover:scale-110">
+                                                    <span className="material-symbols-outlined text-[14px]">close</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             {errors.content && <p className="text-red-500 text-xs mt-2 ml-14">{errors.content}</p>}
-                            <div className="mt-3 ml-14 flex justify-between items-center">
+                            <div className="mt-3 ml-14 flex justify-between items-center relative">
                                 <div className="flex gap-2 text-gray-500">
-                                    <button type="button" className="p-2 hover:bg-gray-100 rounded-full transition-colors tooltip flex items-center justify-center">
+                                    <button type="button" className="p-2 hover:bg-gray-100 rounded-full transition-colors flex items-center justify-center" title="Upload Image">
                                         <span className="material-symbols-outlined text-lg">image</span>
                                     </button>
-                                    <button type="button" className="p-2 hover:bg-gray-100 rounded-full transition-colors flex items-center justify-center">
-                                        <span className="material-symbols-outlined text-lg">description</span>
+                                    <button 
+                                        type="button" 
+                                        onClick={() => setShowSdgPicker(!showSdgPicker)}
+                                        className={`p-2 hover:bg-gray-100 rounded-full transition-colors flex items-center justify-center ${showSdgPicker ? 'text-primary bg-primary/10' : ''}`}
+                                        title="Tag SDGs (IKU 7)"
+                                    >
+                                        <span className="material-symbols-outlined text-lg">public</span>
                                     </button>
                                 </div>
                                 <button
@@ -123,6 +168,28 @@ export default function NetworkIndex({ posts }: any) {
                                 >
                                     Post
                                 </button>
+
+                                {showSdgPicker && (
+                                    <div className="absolute top-12 left-0 z-20 bg-white shadow-2xl rounded-2xl border border-gray-100 p-4 w-72 animate-in fade-in slide-in-from-top-4">
+                                        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 px-1">Select SDG (IKU 7)</h4>
+                                        <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto pr-1">
+                                            {sdgs.map((sdg) => (
+                                                <button
+                                                    key={sdg.id}
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setData('sdg_tag', sdg.id);
+                                                        setShowSdgPicker(false);
+                                                    }}
+                                                    className="text-[10px] font-bold text-white p-2 rounded-lg hover:opacity-80 transition-opacity text-left leading-tight"
+                                                    style={{ backgroundColor: sdg.color }}
+                                                >
+                                                    {sdg.id}. {sdg.name}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
                             </div>
                         </form>
                     </div>
@@ -135,7 +202,15 @@ export default function NetworkIndex({ posts }: any) {
 
                     {/* Feed Posts */}
                     {posts.data.map((post: any) => (
-                        <div key={post.id} className="bg-white p-5 rounded-[1.5rem] shadow-sm border border-gray-100 space-y-4">
+                        <div key={post.id} className="bg-white p-5 rounded-[1.5rem] shadow-sm border border-gray-100 space-y-4 relative overflow-hidden group">
+                            {post.sdg_tag && (
+                                <div 
+                                    className="absolute top-0 right-0 px-4 py-1 rounded-bl-2xl text-[9px] font-bold text-white uppercase tracking-widest shadow-sm"
+                                    style={{ backgroundColor: sdgs.find(s => s.id === post.sdg_tag)?.color }}
+                                >
+                                    SDG {post.sdg_tag}: {sdgs.find(s => s.id === post.sdg_tag)?.name}
+                                </div>
+                            )}
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     {post.user.avatar ? (

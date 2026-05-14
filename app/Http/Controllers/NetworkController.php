@@ -28,11 +28,13 @@ class NetworkController extends Controller
     {
         $validated = $request->validate([
             'content' => 'required|string|max:2000',
+            'sdg_tag' => 'nullable|integer|min:1|max:17',
         ]);
 
         SocialPost::create([
             'user_id' => $request->user()->id,
             'content' => $validated['content'],
+            'sdg_tag' => $validated['sdg_tag'] ?? null,
             'type' => 'post',
         ]);
 

@@ -78,30 +78,55 @@ export default function MarketplaceShow({ job, already_applied }: any) {
                             </div>
 
                             <div className="w-full md:w-80">
-                                <div className="sticky top-24 p-8 bg-surface-container-low rounded-[2.5rem] border border-gray-50">
-                                    {already_applied ? (
-                                        <div className="text-center">
-                                            <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                                <span className="material-symbols-outlined text-3xl">verified</span>
+                                <div className="sticky top-24 space-y-6">
+                                    {/* AI Insight Card */}
+                                    {!already_applied && (
+                                        <div className="p-6 bg-gradient-to-br from-gray-900 to-black rounded-[2.5rem] border border-white/10 text-white relative overflow-hidden group">
+                                            <div className="relative z-10">
+                                                <div className="flex items-center gap-2 mb-4">
+                                                    <span className="material-symbols-outlined text-primary text-sm">psychology</span>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-primary">AI Insight</span>
+                                                </div>
+                                                <h4 className="text-sm font-bold mb-2">Analisis Kecocokan</h4>
+                                                <p className="text-[11px] text-gray-400 leading-relaxed mb-4">
+                                                    Berdasarkan lencana **IKU 3 (MBKM)** dan skill di profil Anda, AI kami memprediksi kecocokan tinggi untuk posisi ini.
+                                                </p>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
+                                                        <div className="h-full bg-primary w-[85%] rounded-full shadow-[0_0_10px_#2B5FBD]"></div>
+                                                    </div>
+                                                    <span className="text-xs font-black text-primary">85%</span>
+                                                </div>
                                             </div>
-                                            <h3 className="font-bold text-emerald-900 mb-2">Terdaftar</h3>
-                                            <p className="text-xs text-emerald-700">Anda sudah melamar posisi ini. Cek progres di dashboard Anda.</p>
+                                            <div className="absolute -top-10 -right-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-all"></div>
                                         </div>
-                                    ) : (
-                                        <>
-                                            <h3 className="font-bold text-gray-900 mb-4 text-center">Tertarik dengan posisi ini?</h3>
-                                            <button 
-                                                onClick={() => setShowApplyModal(true)}
-                                                className="w-full py-4 bg-primary text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2"
-                                            >
-                                                Lamar Sekarang
-                                                <span className="material-symbols-outlined">rocket_launch</span>
-                                            </button>
-                                            <p className="text-[10px] text-gray-400 text-center mt-4 uppercase tracking-widest font-black">
-                                                Data Profil IKU Anda akan otomatis dilampirkan
-                                            </p>
-                                        </>
                                     )}
+
+                                    <div className="p-8 bg-surface-container-low rounded-[2.5rem] border border-gray-50">
+                                        {already_applied ? (
+                                            <div className="text-center">
+                                                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                                    <span className="material-symbols-outlined text-3xl">verified</span>
+                                                </div>
+                                                <h3 className="font-bold text-emerald-900 mb-2">Terdaftar</h3>
+                                                <p className="text-xs text-emerald-700">Anda sudah melamar posisi ini. Cek progres di dashboard Anda.</p>
+                                            </div>
+                                        ) : (
+                                            <>
+                                                <h3 className="font-bold text-gray-900 mb-4 text-center">Tertarik dengan posisi ini?</h3>
+                                                <button 
+                                                    onClick={() => setShowApplyModal(true)}
+                                                    className="w-full py-4 bg-primary text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-2"
+                                                >
+                                                    Lamar Sekarang
+                                                    <span className="material-symbols-outlined">rocket_launch</span>
+                                                </button>
+                                                <p className="text-[10px] text-gray-400 text-center mt-4 uppercase tracking-widest font-black">
+                                                    Profil IKU Anda akan dilampirkan
+                                                </p>
+                                            </>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>

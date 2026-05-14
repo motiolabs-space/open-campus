@@ -10,6 +10,8 @@ use App\Http\Controllers\TalentController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\PddiktiController;
+use App\Http\Controllers\TracerStudyController;
+use App\Http\Controllers\MbkmController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -98,8 +100,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/learning/show', function () {
         return Inertia::render('Learning/Show');
     })->name('learning.show');
+
+    Route::get('/tracer-study', [TracerStudyController::class, 'index'])->name('tracer.index');
+    Route::post('/tracer-study', [TracerStudyController::class, 'store'])->name('tracer.store');
+
+    Route::get('/mbkm', [MbkmController::class, 'index'])->name('mbkm.index');
+    Route::post('/mbkm/activity', [MbkmController::class, 'storeActivity'])->name('mbkm.activity.store');
+    Route::get('/mbkm/activity/{activity}/logbook', [MbkmController::class, 'showLogbook'])->name('mbkm.logbook');
+    Route::post('/mbkm/activity/{activity}/logbook', [MbkmController::class, 'storeLogbook'])->name('mbkm.logbook.store');
+
     Route::get('/job/logbook', function () {
-        return Inertia::render('Job/Logbook');
+        return redirect()->route('mbkm.index');
     })->name('job.logbook');
     Route::get('/community', function () {
         return Inertia::render('Community/Show');
@@ -110,6 +121,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // AI IKU Engine Prototype Route
     Route::post('/ai/analyze-evidence', [\App\Http\Controllers\AIEngineController::class, 'analyzeEvidence'])->name('ai.analyze');
+
+    // IKU Analytics Dashboard
+    Route::get('/iku/analytics', [\App\Http\Controllers\IkuAnalyticsController::class, 'index'])->name('iku.analytics');
+
+    // AI IKU Evaluator
+    Route::post('/ai/evaluate-logbook/{logbook}', [\App\Http\Controllers\AIEngineController::class, 'evaluateLogbook'])->name('ai.logbook.evaluate');
 });
 
 require __DIR__.'/auth.php';

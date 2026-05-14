@@ -4,7 +4,7 @@
 [![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
 
-**Open Source Campus Network (OSCN)** adalah platform ekosistem akademik modern yang dirancang untuk menghubungkan Mahasiswa, Dosen, Alumni, dan Industri dalam satu jaringan yang cerdas dan terintegrasi. Dibangun dengan pondasi **Laravel 13 (AI-Native)**, platform ini mengedepankan kolaborasi, transparansi data akademik, dan efisiensi pelaporan berbasis AI.
+**Open Source Campus Network (OSCN)** adalah platform ekosistem akademik modern yang dirancang untuk menghubungkan Mahasiswa, Dosen, Alumni, dan Industri dalam satu jaringan yang cerdas dan terintegrasi untuk mendukung penuh program **IKU PT dari Kemendiktisaintek Berdampak**. Dibangun dengan pondasi **Laravel 13 (AI-Native)**, platform ini mengedepankan kolaborasi, transparansi data akademik, dan efisiensi pelaporan berbasis AI untuk transformasi pendidikan tinggi Indonesia.
 
 ---
 
@@ -21,6 +21,21 @@ Sistem peninjauan bukti aktivitas (magang, riset, pengabdian) yang didukung oleh
 
 ### 🎓 Academic & Industry Hub
 Ruang kolaborasi antara dunia akademik dan industri untuk pencarian bakat, lowongan magang, dan proyek riset bersama.
+
+---
+
+## 🏛️ Kepatuhan IKU PT & Peraturan Menteri 2025
+
+OSCN dirancang secara spesifik untuk memfasilitasi pelaporan **Indikator Kinerja Utama (IKU)** sesuai dengan standar kementerian terbaru tahun 2025:
+
+1. **Otomasi Laporan IKU 1 & 2 (Tracer Study)**: 
+   AI Matchmaking dan sistem tracking alumni terintegrasi memastikan data serapan lulusan terekam secara *real-time* untuk validasi kualitas lulusan.
+2. **Quality Control IKU 3 (MBKM)**: 
+   Fitur **AI IKU Evaluator** melakukan review semantik terhadap logbook mahasiswa untuk menjamin kualitas aktivitas magang/riset sesuai dengan bobot SKS yang dilaporkan.
+3. **Evidence-Based Reporting IKU 7 (Social Impact)**: 
+   Sistem pengarsipan bukti digital (*evidence*) yang terenkripsi memudahkan auditor untuk melakukan verifikasi terhadap dampak sosial dan riset terapan yang dilakukan civitas akademika.
+4. **Executive Dashboard Analytics**:
+   Pimpinan kampus mendapatkan visualisasi matriks pencapaian IKU secara komprehensif untuk pengambilan keputusan strategis berbasis data (*data-driven governance*).
 
 ---
 

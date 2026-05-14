@@ -19,6 +19,7 @@ class SocialPost extends Model
         'type',
         'media',
         'metadata',
+        'sdg_tag',
     ];
 
     protected $casts = [

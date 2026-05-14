@@ -43,6 +43,10 @@ export default function AuthenticatedLayout({
                                 <span className="material-symbols-outlined">school</span>
                                 <span className="text-[10px] font-label-md">Learning</span>
                             </Link>
+                            <Link href={route('mbkm.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                <span className="material-symbols-outlined">edit_calendar</span>
+                                <span className="text-[10px] font-label-md">MBKM Center</span>
+                            </Link>
                             <Link href={route('messages.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2 relative">
                                 <span className="material-symbols-outlined">chat_bubble</span>
                                 <span className="text-[10px] font-label-md">Messages</span>
@@ -53,9 +57,13 @@ export default function AuthenticatedLayout({
                                 <span className="text-[10px] font-label-md">Notifications</span>
                                 <span className="absolute top-2 right-1 bg-red-500 w-2 h-2 rounded-full"></span>
                             </Link>
-                            <Link href={route('evidence.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                            <Link href={route('iku.analytics')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
                                 <span className="material-symbols-outlined">analytics</span>
                                 <span className="text-[10px] font-label-md">IKU Report</span>
+                            </Link>
+                            <Link href={route('tracer.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                <span className="material-symbols-outlined">history_edu</span>
+                                <span className="text-[10px] font-label-md">Tracer Study</span>
                             </Link>
                             <Link href={route('marketplace.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
                                 <span className="material-symbols-outlined">shopping_cart</span>
