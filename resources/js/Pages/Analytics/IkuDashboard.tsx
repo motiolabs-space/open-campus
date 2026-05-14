@@ -64,35 +64,45 @@ export default function IkuDashboard({ ikuScores, tracerStats, mbkmStats, sdgSta
                 </div>
 
                 {/* Top KPI Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                    <div className="bg-white p-8 rounded-[3rem] shadow-xl border border-gray-50 flex items-center gap-8 group hover:scale-[1.02] transition-all">
-                        <div className="w-20 h-20 bg-primary/10 text-primary rounded-[2rem] flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
-                            <span className="material-symbols-outlined text-4xl">history_edu</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
+                        <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+                            <span className="material-symbols-outlined text-3xl">history_edu</span>
                         </div>
                         <div>
-                            <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Total Lulusan</p>
-                            <h3 className="text-4xl font-extrabold text-gray-900">{totals.graduates}</h3>
-                            <p className="text-xs text-emerald-500 font-bold mt-1">+12% dari tahun lalu</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 1 & 2</p>
+                            <h3 className="text-2xl font-extrabold text-gray-900">{totals.graduates}</h3>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">Lulusan</p>
                         </div>
                     </div>
-                    <div className="bg-white p-8 rounded-[3rem] shadow-xl border border-gray-50 flex items-center gap-8 group hover:scale-[1.02] transition-all">
-                        <div className="w-20 h-20 bg-secondary/10 text-secondary rounded-[2rem] flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-all">
-                            <span className="material-symbols-outlined text-4xl">rocket_launch</span>
+                    <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
+                        <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-2xl flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-all">
+                            <span className="material-symbols-outlined text-3xl">rocket_launch</span>
                         </div>
                         <div>
-                            <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Partisipasi MBKM</p>
-                            <h3 className="text-4xl font-extrabold text-gray-900">{totals.mbkm}</h3>
-                            <p className="text-xs text-secondary font-bold mt-1">IKU 2 & 3 Target</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 3</p>
+                            <h3 className="text-2xl font-extrabold text-gray-900">{totals.mbkm}</h3>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">Peserta MBKM</p>
                         </div>
                     </div>
-                    <div className="bg-white p-8 rounded-[3rem] shadow-xl border border-gray-50 flex items-center gap-8 group hover:scale-[1.02] transition-all">
-                        <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-[2rem] flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                            <span className="material-symbols-outlined text-4xl">public</span>
+                    <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
+                        <div className="w-16 h-16 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center group-hover:bg-amber-500 group-hover:text-white transition-all">
+                            <span className="material-symbols-outlined text-3xl">science</span>
                         </div>
                         <div>
-                            <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Social Impact</p>
-                            <h3 className="text-4xl font-extrabold text-gray-900">{totals.impact_posts}</h3>
-                            <p className="text-xs text-emerald-500 font-bold mt-1">IKU 7 Contribution</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 5 & 10</p>
+                            <h3 className="text-2xl font-extrabold text-gray-900">{totals.research}</h3>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">Proyek Riset</p>
+                        </div>
+                    </div>
+                    <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
+                        <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                            <span className="material-symbols-outlined text-3xl">handshake</span>
+                        </div>
+                        <div>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 6</p>
+                            <h3 className="text-2xl font-extrabold text-gray-900">{totals.partnerships}</h3>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">MoU Aktif</p>
                         </div>
                     </div>
                 </div>
