@@ -21,17 +21,17 @@ Platform OSCN mengintegrasikan berbagai pemangku kepentingan dalam satu ekosiste
 
 ## ✨ Fitur Utama Platform
 
-### 🔐 AI-Native Governance
-Sistem pelaporan dan validasi bukti aktivitas yang didukung oleh AI untuk memastikan kepatuhan terhadap standar nasional secara otomatis.
+### 🌐 Collaborative Research & Innovation Hub
+Platform kolaborasi untuk mengerjakan proyek riset dan penelitian multidisiplin yang dapat berkolaborasi antar fakultas maupun institusi, dirancang khusus untuk menciptakan inovasi yang memberikan dampak nyata bagi masyarakat (Social Impact).
 
-### 🌐 Smart Social Network
-Jejaring sosial profesional khusus civitas akademika untuk kolaborasi riset, publikasi, dan diseminasi inovasi yang berdampak luas.
+### 💼 Industry-Academic Integration
+Menghubungkan dunia kampus secara langsung dengan kebutuhan industri untuk penyediaan tenaga kerja kompeten, program magang bersertifikat, dan kolaborasi penelitian bersama untuk hilirisasi inovasi.
 
-### 🤖 Career & Talent Marketplace
-Bursa kerja cerdas yang menggunakan AI untuk mempertemukan lulusan dengan industri berdasarkan "Lencana IKU" dan kompetensi riil.
+### 🔐 AI-Native Governance & Compliance
+Sistem pelaporan dan validasi bukti aktivitas yang didukung oleh AI untuk memastikan kepatuhan terhadap 12 Indikator Kinerja Utama (IKU) secara otomatis dan akurat.
 
-### 📊 Executive IKU Analytics
-Dashboard analitik tingkat tinggi yang menyajikan matriks performa institusi secara transparan dan akuntabel.
+### 📊 Executive Analytics Command Center
+Dashboard analitik tingkat tinggi yang menyajikan matriks performa institusi secara transparan untuk pimpinan kampus dalam memantau dampak dan capaian target strategis.
 
 ---
 
