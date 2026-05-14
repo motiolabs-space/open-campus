@@ -220,40 +220,45 @@ export default function Welcome({ auth }: PageProps) {
                     </div>
                 </section>
 
-                {/* Campus & Industry Grid */}
+                {/* Strategic Partnership & IKU Compliance */}
                 <section className="py-20 bg-surface-container-low">
                     <div className="max-w-[1280px] mx-auto px-6">
                         <div className="text-center mb-16">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 border border-emerald-100">
+                                <span className="material-symbols-outlined text-sm">verified_user</span>
+                                Kepatuhan IKU PT 2025
+                            </div>
                             <h2 className="font-headline-lg text-headline-lg mb-4">Strategic Partnership Ecosystem</h2>
-                            <p className="text-on-surface-variant max-w-2xl mx-auto">Mempertemukan institusi pendidikan tinggi dengan dunia industri untuk menciptakan inovasi yang berdampak.</p>
+                            <p className="text-on-surface-variant max-w-2xl mx-auto">Mempertemukan institusi pendidikan tinggi dengan dunia industri untuk menciptakan inovasi yang berdampak, sekaligus memenuhi 12 Indikator Kinerja Utama secara otomatis.</p>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[280px]">
-                            <div className="md:col-span-8 bg-white p-8 rounded-[2rem] flex flex-col justify-between shadow-sm">
-                                <div className="flex justify-between items-start">
+                            <div className="md:col-span-8 bg-white p-8 rounded-[2rem] flex flex-col justify-between shadow-sm relative overflow-hidden group">
+                                <div className="flex justify-between items-start relative z-10">
                                     <div>
                                         <div className="text-primary font-label-md mb-2 flex items-center gap-1">
                                             <span className="material-symbols-outlined text-[18px]">location_city</span>
                                             For Campuses
                                         </div>
-                                        <h3 className="font-headline-lg">Campus Reputation & Impact</h3>
+                                        <h3 className="font-headline-lg">Campus Reputation & IKU Hub</h3>
                                     </div>
                                     <div className="p-3 bg-blue-50 rounded-full">
                                         <span className="material-symbols-outlined text-primary text-[32px]">insights</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-wrap gap-3">
+                                <div className="flex flex-wrap gap-3 relative z-10">
                                     <div className="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-xl border border-outline-variant">
                                         <span className="material-symbols-outlined text-primary text-[18px]">hub</span>
-                                        <span className="font-label-sm">Collaboration Network</span>
+                                        <span className="font-label-sm">IKU 6: Partnerships</span>
                                     </div>
                                     <div className="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-xl border border-outline-variant">
                                         <span className="material-symbols-outlined text-primary text-[18px]">auto_graph</span>
-                                        <span className="font-label-sm">Impact Story Tracking</span>
+                                        <span className="font-label-sm">IKU 8: Accreditation Support</span>
                                     </div>
-                                    <div className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl">
-                                        <span className="font-label-sm">ActivityTag: TOP 10 Ranking</span>
+                                    <div className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl shadow-lg shadow-primary/20">
+                                        <span className="font-label-sm">Audit-Ready Evidence Center</span>
                                     </div>
                                 </div>
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32 group-hover:bg-primary/10 transition-all"></div>
                             </div>
                             <div className="md:col-span-4 bg-primary text-white p-8 rounded-[2rem] flex flex-col justify-between">
                                 <div>

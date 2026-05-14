@@ -12,10 +12,10 @@
 
 Platform OSCN mengintegrasikan berbagai pemangku kepentingan dalam satu ekosistem:
 
-*   **Mahasiswa**: Membangun portofolio berbasis IKU, mengikuti program MBKM, dan melakukan rekrutmen berbasis AI Matchmaking.
-*   **Dosen**: Mengelola riset, membimbing aktivitas luar kampus (MBKM), dan melaporkan kinerja tridharma yang berdampak.
-*   **Admin Kampus / Rektorat**: Memantau capaian 12 IKU secara real-time melalui Executive Dashboard untuk kebijakan strategis.
-*   **Mitra Industri**: Membuka peluang kerja/magang dan melakukan kurasi talent secara presisi berdasarkan kompetensi terverifikasi.
+*   **Mahasiswa**: Membangun portofolio secara natural melalui postingan aktivitas, mengikuti program MBKM, dan terhubung dengan industri tanpa tekanan target angka.
+*   **Dosen**: Mengelola riset kolaboratif, mendokumentasikan publikasi, dan berkegiatan di luar kampus sebagai bagian dari pengembangan diri dan rekognisi profesional.
+*   **LPPM & Rektorat (Admin)**: Peran strategis di balik layar yang memantau rekapitulasi data antara target IKU tahunan dan realisasi lapangan, serta aktif mendorong civitas untuk mencapai target institusi.
+*   **Mitra Industri**: Menyediakan tantangan proyek riset, membuka lowongan magang/kerja, dan mencari pakar (Expert Finder) untuk kebutuhan konsultasi bisnis.
 
 ---
 
