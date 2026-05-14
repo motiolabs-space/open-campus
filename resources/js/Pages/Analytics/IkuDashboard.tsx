@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 
-export default function IkuDashboard({ tracerStats, mbkmStats, sdgStats, totals }: any) {
+export default function IkuDashboard({ ikuScores, tracerStats, mbkmStats, sdgStats, totals }: any) {
     const sdgs = [
         { id: 1, name: 'No Poverty', color: '#E5243B' },
         { id: 2, name: 'Zero Hunger', color: '#DDA63A' },
@@ -97,11 +97,64 @@ export default function IkuDashboard({ tracerStats, mbkmStats, sdgStats, totals 
                     </div>
                 </div>
 
+                {/* 12 IKU Performance Matrix (New 2025 Standard) */}
+                <div className="bg-white rounded-[3rem] p-10 shadow-xl border border-gray-50 mb-12 overflow-hidden relative">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+                        <div>
+                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">12 IKU Performance Matrix</h2>
+                            <p className="text-gray-500 mt-1 uppercase text-[10px] font-black tracking-[0.2em]">Standard Kemendiktisaintek Berdampak 2025</p>
+                        </div>
+                        <div className="flex bg-gray-50 p-1 rounded-xl border border-gray-100">
+                            <button className="px-4 py-2 bg-white shadow-sm rounded-lg text-[10px] font-bold uppercase tracking-widest text-primary">All Indicators</button>
+                            <button className="px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-gray-600 transition-colors">Wajib Only</button>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {ikuScores?.map((iku: any) => (
+                            <div key={iku.id} className="p-6 bg-surface-container-low rounded-[2rem] border border-gray-50 group hover:border-primary/20 hover:shadow-lg transition-all relative overflow-hidden">
+                                <div className="flex justify-between items-start mb-4">
+                                    <span className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest ${
+                                        iku.type === 'Wajib' ? 'bg-primary/10 text-primary' : 
+                                        iku.type === 'Pilihan' ? 'bg-amber-100 text-amber-700' : 
+                                        'bg-purple-100 text-purple-700'
+                                    }`}>
+                                        {iku.type}
+                                    </span>
+                                    <span className={`text-xs font-black ${
+                                        iku.status === 'Excellent' ? 'text-emerald-500' :
+                                        iku.status === 'Good' ? 'text-blue-500' :
+                                        iku.status === 'Warning' ? 'text-amber-500' :
+                                        'text-red-500'
+                                    }`}>
+                                        {iku.status}
+                                    </span>
+                                </div>
+                                <h4 className="text-sm font-bold text-gray-800 mb-6 h-10 leading-snug">{iku.name}</h4>
+                                <div className="flex items-end justify-between">
+                                    <span className="text-3xl font-black text-gray-900">{iku.score}%</span>
+                                    <div className="w-12 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                        <div 
+                                            className={`h-full rounded-full ${
+                                                iku.score > 85 ? 'bg-emerald-500' :
+                                                iku.score > 60 ? 'bg-primary' :
+                                                'bg-red-500'
+                                            }`}
+                                            style={{ width: `${iku.score}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                                <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/10 transition-all"></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     {/* Tracer Study Detail (IKU 2) */}
                     <div className="lg:col-span-4 bg-white rounded-[3rem] p-10 shadow-xl border border-gray-50">
                         <div className="flex justify-between items-start mb-10">
-                            <h3 className="text-2xl font-bold text-gray-900 leading-tight">Status Lulusan<br/><span className="text-primary text-sm uppercase tracking-widest">(IKU 2)</span></h3>
+                            <h3 className="text-2xl font-bold text-gray-900 leading-tight">Status Lulusan<br/><span className="text-primary text-sm uppercase tracking-widest">(IKU 1 & 2)</span></h3>
                             <span className="p-3 bg-gray-50 rounded-2xl material-symbols-outlined text-gray-400">donut_large</span>
                         </div>
                         <div className="space-y-6">
@@ -109,12 +162,12 @@ export default function IkuDashboard({ tracerStats, mbkmStats, sdgStats, totals 
                                 <div key={stat.status} className="space-y-2">
                                     <div className="flex justify-between text-sm">
                                         <span className="font-bold text-gray-600">{getStatusLabel(stat.status)}</span>
-                                        <span className="font-bold text-primary">{(stat.count / totals.graduates * 100).toFixed(1)}%</span>
+                                        <span className="font-bold text-primary">{(stat.count / (totals.graduates || 1) * 100).toFixed(1)}%</span>
                                     </div>
                                     <div className="h-3 bg-gray-50 rounded-full overflow-hidden">
                                         <div 
                                             className="h-full bg-primary rounded-full transition-all duration-1000" 
-                                            style={{ width: `${(stat.count / totals.graduates * 100)}%` }}
+                                            style={{ width: `${(stat.count / (totals.graduates || 1) * 100)}%` }}
                                         ></div>
                                     </div>
                                     <p className="text-[10px] text-gray-400 font-bold uppercase">{stat.count} Responden</p>
