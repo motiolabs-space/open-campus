@@ -127,6 +127,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // AI IKU Evaluator
     Route::post('/ai/evaluate-logbook/{logbook}', [\App\Http\Controllers\AIEngineController::class, 'evaluateLogbook'])->name('ai.logbook.evaluate');
+
+    // Research & Innovation Hub
+    Route::get('/research-hub', [\App\Http\Controllers\ResearchHubController::class, 'index'])->name('research-hub.index');
+    Route::get('/research-hub/{project}', [\App\Http\Controllers\ResearchHubController::class, 'show'])->name('research-hub.show');
+    Route::post('/research-hub', [\App\Http\Controllers\ResearchHubController::class, 'store'])->name('research-hub.store');
 });
 
 require __DIR__.'/auth.php';

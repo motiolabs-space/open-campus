@@ -35,9 +35,9 @@ export default function AuthenticatedLayout({
                                 <span className="material-symbols-outlined">work</span>
                                 <span className="text-[10px] font-label-md">Jobs</span>
                             </Link>
-                            <Link href={route('project.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                            <Link href={route('research-hub.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
                                 <span className="material-symbols-outlined">science</span>
-                                <span className="text-[10px] font-label-md">Research</span>
+                                <span className="text-[10px] font-label-md">Research Hub</span>
                             </Link>
                             <Link href={route('learning.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
                                 <span className="material-symbols-outlined">school</span>
