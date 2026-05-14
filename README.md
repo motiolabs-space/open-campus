@@ -1,43 +1,112 @@
-# Campus Network (Laravel 13 AI-Native)
+# Open Source Campus Network (OSCN)
 
-Welcome to the **Campus Network** project! This is an open-source initiative designed to provide a robust networking platform for campuses, built with the latest **Laravel 13**.
+[![Laravel 13](https://img.shields.io/badge/Laravel-13.x-FF2D20?style=for-the-badge&logo=laravel)](https://laravel.com)
+[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
 
-## 🚀 AI-Native Features
+**Open Source Campus Network (OSCN)** adalah platform ekosistem akademik modern yang dirancang untuk menghubungkan Mahasiswa, Dosen, Alumni, dan Industri dalam satu jaringan yang cerdas dan terintegrasi. Dibangun dengan pondasi **Laravel 13 (AI-Native)**, platform ini mengedepankan kolaborasi, transparansi data akademik, dan efisiensi pelaporan berbasis AI.
 
-This project leverages Laravel 13's native AI capabilities:
-- **Integrated AI SDK**: Unified interface for Gemini, OpenAI, and Anthropic.
-- **Semantic Search**: Native vector search support via Eloquent.
-- **Agent-Ready Architecture**: Designed for autonomous AI agents.
+---
 
-## Prerequisites
+## ✨ Fitur Utama
 
-- **PHP 8.3+** (Installed in `laragon\bin\php\php83`)
-- **MySQL 8.0+**
-- **Laragon** (Recommended)
+### 🔐 Multi-Institutional SSO
+Sistem login tunggal (Single Sign-On) yang mendukung integrasi dengan provider kampus (Google Workspace, Microsoft 365, atau CAS) untuk keamanan dan kemudahan akses.
 
-## Getting Started
+### 🌐 Social Network Engine (Feed & Network)
+Mesin jejaring sosial yang memungkinkan civitas akademika untuk berbagi riset, pemikiran, dan pencapaian. Mendukung postingan teks, tautan, dan interaksi *real-time* antar pengguna.
 
-1. **Configure Environment:**
-   Ensure your `.env` has the correct database and AI provider credentials.
+### 🤖 AI-Driven Evidence Review (Upcoming)
+Sistem peninjauan bukti aktivitas (magang, riset, pengabdian) yang didukung oleh AI untuk klasifikasi otomatis ke dalam Indikator Kinerja Utama (IKU) universitas.
 
-2. **Run Migrations:**
+### 🎓 Academic & Industry Hub
+Ruang kolaborasi antara dunia akademik dan industri untuk pencarian bakat, lowongan magang, dan proyek riset bersama.
+
+---
+
+## 🛠️ Arsitektur Teknologi
+
+- **Backend**: Laravel 13.x (PHP 8.3+)
+- **Frontend**: React 18 + Inertia.js (SPA Experience)
+- **Styling**: Tailwind CSS 4.0 (Custom Design System)
+- **Database**: MySQL / MariaDB
+- **AI Engine**: Laravel AI SDK (Gemini/OpenAI Integration)
+- **Role Management**: Spatie Laravel Permission
+
+---
+
+## 🚀 Persiapan Pengembangan (Local)
+
+### Prasyarat
+- **Laragon** (Sangat disarankan)
+- **PHP 8.3**
+- **Node.js & NPM**
+
+### Instalasi
+1. **Clone Repositori:**
    ```bash
-   php artisan migrate
+   git clone https://github.com/motiolabs-space/open-campus.git
+   cd open-campus
    ```
 
-3. **Install AI SDK:**
+2. **Instalasi Dependensi:**
    ```bash
-   composer require laravel/ai
+   composer install
+   npm install
    ```
 
-## Development
+3. **Konfigurasi Environment:**
+   Salin `.env.example` menjadi `.env` dan sesuaikan kredensial database serta AI API Key.
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-This project is hosted in Laragon. To run:
-1. Open Laragon.
-2. Select PHP 8.3.
-3. Click "Start All".
-4. Access via `http://campusnetwork.test`.
+4. **Migrasi & Seeding:**
+   Bangun struktur database dan isi dengan data simulasi.
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
 
-## License
+5. **Jalankan Aplikasi:**
+   ```bash
+   npm run dev
+   # Akses melalui http://campusnetwork.test atau http://localhost:8000
+   ```
 
-This project is licensed under the MIT License.
+---
+
+## 🗺️ Roadmap Pengembangan
+
+### ✅ Tahap 1: Fondasi & Autentikasi (Selesai)
+- [x] Inisialisasi Project Laravel 13 & React.
+- [x] Implementasi Role-Based Access Control (RBAC).
+- [x] Integrasi Single Sign-On (SSO) Kampus.
+- [x] Desain Sistem & Branding Dinamis via `.env`.
+
+### 🔄 Tahap 2: Social Network Engine (Dalam Pengembangan)
+- [x] Skema Database Social Feed (Post, Comment, Like).
+- [x] Backend Controller & API Data Mapping.
+- [x] UI Feed Dinamis dengan React & Inertia.js.
+- [ ] Fitur Unggah Media (Gambar & Dokumen).
+- [ ] Sistem Notifikasi Real-time.
+
+### 🔜 Tahap 3: AI-Driven Evidence Review (Segera Datang)
+- [ ] Modul Unggah Evidence (Bukti Magang/MBKM).
+- [ ] Integrasi AI Classifier untuk pemetaan IKU (Indikator Kinerja Utama).
+- [ ] Dashboard Reviewer untuk Dosen & Admin.
+
+### 🚀 Tahap 4: Talent & Marketplace
+- [ ] Dashboard Lowongan Industri.
+- [ ] Portofolio Mahasiswa Terverifikasi AI.
+- [ ] Fitur Matchmaking antara Mahasiswa & Proyek Riset Dosen.
+
+---
+
+## 📄 Lisensi
+Proyek ini didistribusikan di bawah lisensi **MIT**. Silakan gunakan dan kembangkan untuk kemajuan ekosistem pendidikan tinggi.
+
+---
+
+**OSCN - Connecting Minds, Advancing Education.**
+Developed by [Motiolabs Space](https://github.com/motiolabs-space)
