@@ -8,34 +8,51 @@
 
 ---
 
-## ✨ Fitur Utama
+## 👥 Ekosistem Peran (Roles)
 
-### 🔐 Multi-Institutional SSO
-Sistem login tunggal (Single Sign-On) yang mendukung integrasi dengan provider kampus (Google Workspace, Microsoft 365, atau CAS) untuk keamanan dan kemudahan akses.
+Platform OSCN mengintegrasikan berbagai pemangku kepentingan dalam satu ekosistem:
 
-### 🌐 Social Network Engine (Feed & Network)
-Mesin jejaring sosial yang memungkinkan civitas akademika untuk berbagi riset, pemikiran, dan pencapaian. Mendukung postingan teks, tautan, dan interaksi *real-time* antar pengguna.
-
-### 🤖 AI-Driven Evidence Review (Upcoming)
-Sistem peninjauan bukti aktivitas (magang, riset, pengabdian) yang didukung oleh AI untuk klasifikasi otomatis ke dalam Indikator Kinerja Utama (IKU) universitas.
-
-### 🎓 Academic & Industry Hub
-Ruang kolaborasi antara dunia akademik dan industri untuk pencarian bakat, lowongan magang, dan proyek riset bersama.
+*   **Mahasiswa**: Membangun portofolio berbasis IKU, mengikuti program MBKM, dan melakukan rekrutmen berbasis AI Matchmaking.
+*   **Dosen**: Mengelola riset, membimbing aktivitas luar kampus (MBKM), dan melaporkan kinerja tridharma yang berdampak.
+*   **Admin Kampus / Rektorat**: Memantau capaian 12 IKU secara real-time melalui Executive Dashboard untuk kebijakan strategis.
+*   **Mitra Industri**: Membuka peluang kerja/magang dan melakukan kurasi talent secara presisi berdasarkan kompetensi terverifikasi.
 
 ---
 
-## 🏛️ Kepatuhan IKU PT & Peraturan Menteri 2025
+## ✨ Fitur Utama Platform
 
-OSCN dirancang secara spesifik untuk memfasilitasi pelaporan **Indikator Kinerja Utama (IKU)** sesuai dengan standar kementerian terbaru tahun 2025:
+### 🔐 AI-Native Governance
+Sistem pelaporan dan validasi bukti aktivitas yang didukung oleh AI untuk memastikan kepatuhan terhadap standar nasional secara otomatis.
 
-1. **Otomasi Laporan IKU 1 & 2 (Tracer Study)**: 
-   AI Matchmaking dan sistem tracking alumni terintegrasi memastikan data serapan lulusan terekam secara *real-time* untuk validasi kualitas lulusan.
-2. **Quality Control IKU 3 (MBKM)**: 
-   Fitur **AI IKU Evaluator** melakukan review semantik terhadap logbook mahasiswa untuk menjamin kualitas aktivitas magang/riset sesuai dengan bobot SKS yang dilaporkan.
-3. **Evidence-Based Reporting IKU 7 (Social Impact)**: 
-   Sistem pengarsipan bukti digital (*evidence*) yang terenkripsi memudahkan auditor untuk melakukan verifikasi terhadap dampak sosial dan riset terapan yang dilakukan civitas akademika.
-4. **Executive Dashboard Analytics**:
-   Pimpinan kampus mendapatkan visualisasi matriks pencapaian IKU secara komprehensif untuk pengambilan keputusan strategis berbasis data (*data-driven governance*).
+### 🌐 Smart Social Network
+Jejaring sosial profesional khusus civitas akademika untuk kolaborasi riset, publikasi, dan diseminasi inovasi yang berdampak luas.
+
+### 🤖 Career & Talent Marketplace
+Bursa kerja cerdas yang menggunakan AI untuk mempertemukan lulusan dengan industri berdasarkan "Lencana IKU" dan kompetensi riil.
+
+### 📊 Executive IKU Analytics
+Dashboard analitik tingkat tinggi yang menyajikan matriks performa institusi secara transparan dan akuntabel.
+
+---
+
+## 🏛️ Kepatuhan 12 IKU PT (Kemendiktisaintek 2025)
+
+OSCN memfasilitasi pelaporan 12 Indikator Kinerja Utama sesuai dengan kerangka **"Diktisaintek Berdampak"**:
+
+| Kategori | Indikator IKU | Penjelasan Singkat |
+| :--- | :--- | :--- |
+| **Wajib** | **IKU 1: Kesiapan Lulusan** | Persentase lulusan yang bekerja, berwirausaha, atau studi lanjut. |
+| **Wajib** | **IKU 2: Pengalaman Luar Kampus** | Mahasiswa yang mendapat pengalaman minimal 20 SKS di luar kampus. |
+| **Wajib** | **IKU 3: Dosen di Luar Kampus** | Dosen yang berkegiatan di industri atau kampus lain yang bereputasi. |
+| **Wajib** | **IKU 4: Praktisi Mengajar** | Keterlibatan tenaga ahli industri dalam pembelajaran di kelas. |
+| **Wajib** | **IKU 5: Hasil Kerja Dosen** | Rekognisi internasional dan pemanfaatan hasil riset oleh masyarakat. |
+| **Wajib** | **IKU 6: Kemitraan Prodi** | Kerjasama program studi dengan mitra kelas dunia. |
+| **Wajib** | **IKU 7: Kelas Kolaboratif** | Metode pembelajaran yang partisipatif dan berbasis proyek (Case Method/PBL). |
+| **Wajib** | **IKU 8: Akreditasi Internasional** | Persentase program studi yang memiliki sertifikasi/akreditasi internasional. |
+| **Pilihan** | **IKU 9: Dampak SDGs** | Kontribusi institusi terhadap Sustainable Development Goals dan masalah sosial. |
+| **Pilihan** | **IKU 10: Hilirisasi Inovasi** | Jumlah produk inovasi yang berhasil dikomersialkan atau digunakan industri. |
+| **Pilihan** | **IKU 11: Efisiensi Edukasi** | Optimalisasi proses bisnis kampus dan pemerataan akses pendidikan. |
+| **Partisipatif** | **IKU 12: Inisiatif Kampus** | Program inovasi mandiri perguruan tinggi yang memberikan dampak nyata. |
 
 ---
 
