@@ -49,30 +49,40 @@ export default function IkuDashboard({ ikuScores, tracerStats, mbkmStats, sdgSta
         <AuthenticatedLayout>
             <Head title="Executive Dashboard | IKU Analytics" />
 
+    return (
+        <AuthenticatedLayout>
+            <Head title="Executive Dashboard | IKU Analytics" />
+
             <div className="max-w-[1440px] mx-auto px-8 py-12">
-                <div className="flex justify-between items-end mb-12">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
                     <div>
-                        <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs">Command Center</span>
-                        <h1 className="text-5xl font-display-lg font-extrabold text-gray-900 mt-2 tracking-tight">IKU Analytics</h1>
+                        <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs">
+                            {isLppm ? 'Institutional Monitoring' : 'Personal Achievement'}
+                        </span>
+                        <h1 className="text-5xl font-display-lg font-extrabold text-gray-900 mt-2 tracking-tight">
+                            {isLppm ? 'IKU Command Center' : 'Impact Dashboard'}
+                        </h1>
                     </div>
                     <div className="flex gap-4">
                         <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-3">
                             <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                            <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">Live Data</span>
+                            <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">
+                                {isLppm ? 'LPPM OVERVIEW 2026' : 'LIVE ACTIVITY FEED'}
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                {/* Top KPI Cards */}
+                {/* Top KPI Cards - Adaptive Labels */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                     <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
                         <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
                             <span className="material-symbols-outlined text-3xl">history_edu</span>
                         </div>
                         <div>
-                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 1 & 2</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{isLppm ? 'IKU 1 & 2' : 'Lulusan'}</p>
                             <h3 className="text-2xl font-extrabold text-gray-900">{totals.graduates}</h3>
-                            <p className="text-[10px] text-gray-400 font-bold uppercase">Lulusan</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">{isLppm ? 'Target vs Riil' : 'Telah Terlacak'}</p>
                         </div>
                     </div>
                     <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
@@ -80,9 +90,9 @@ export default function IkuDashboard({ ikuScores, tracerStats, mbkmStats, sdgSta
                             <span className="material-symbols-outlined text-3xl">rocket_launch</span>
                         </div>
                         <div>
-                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 3</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{isLppm ? 'IKU 3' : 'Kegiatan'}</p>
                             <h3 className="text-2xl font-extrabold text-gray-900">{totals.mbkm}</h3>
-                            <p className="text-[10px] text-gray-400 font-bold uppercase">Peserta MBKM</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">{isLppm ? 'Partisipasi MBKM' : 'Luar Kampus'}</p>
                         </div>
                     </div>
                     <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
@@ -90,9 +100,9 @@ export default function IkuDashboard({ ikuScores, tracerStats, mbkmStats, sdgSta
                             <span className="material-symbols-outlined text-3xl">science</span>
                         </div>
                         <div>
-                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 5 & 10</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{isLppm ? 'IKU 5 & 10' : 'Inovasi'}</p>
                             <h3 className="text-2xl font-extrabold text-gray-900">{totals.research}</h3>
-                            <p className="text-[10px] text-gray-400 font-bold uppercase">Proyek Riset</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">{isLppm ? 'Hilirisasi Riset' : 'Penelitian Aktif'}</p>
                         </div>
                     </div>
                     <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-50 flex items-center gap-6 group hover:scale-[1.02] transition-all">
@@ -100,24 +110,29 @@ export default function IkuDashboard({ ikuScores, tracerStats, mbkmStats, sdgSta
                             <span className="material-symbols-outlined text-3xl">handshake</span>
                         </div>
                         <div>
-                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">IKU 6</p>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{isLppm ? 'IKU 6' : 'Koneksi'}</p>
                             <h3 className="text-2xl font-extrabold text-gray-900">{totals.partnerships}</h3>
-                            <p className="text-[10px] text-gray-400 font-bold uppercase">MoU Aktif</p>
+                            <p className="text-[10px] text-gray-400 font-bold uppercase">{isLppm ? 'Kemitraan Prodi' : 'MoU Industri'}</p>
                         </div>
                     </div>
                 </div>
 
-                {/* 12 IKU Performance Matrix (New 2025 Standard) */}
+                {/* Performance Matrix - Role Sensitive Labels */}
                 <div className="bg-white rounded-[3rem] p-10 shadow-xl border border-gray-50 mb-12 overflow-hidden relative">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">12 IKU Performance Matrix</h2>
-                            <p className="text-gray-500 mt-1 uppercase text-[10px] font-black tracking-[0.2em]">Standard Kemendiktisaintek Berdampak 2025</p>
+                            <h2 className="text-3xl font-bold text-gray-900 tracking-tight">
+                                {isLppm ? '12 IKU Performance Matrix' : 'Capaian Kontribusi Akademik'}
+                            </h2>
+                            <p className="text-gray-500 mt-1 uppercase text-[10px] font-black tracking-[0.2em]">
+                                {isLppm ? 'LPPM Monitoring & Institutional Benchmarks' : 'Rekap Dampak Nyata bagi Masyarakat & Industri'}
+                            </p>
                         </div>
-                        <div className="flex bg-gray-50 p-1 rounded-xl border border-gray-100">
-                            <button className="px-4 py-2 bg-white shadow-sm rounded-lg text-[10px] font-bold uppercase tracking-widest text-primary">All Indicators</button>
-                            <button className="px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-gray-600 transition-colors">Wajib Only</button>
-                        </div>
+                        {isLppm && (
+                            <button className="px-6 py-3 bg-gray-900 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-primary transition-all">
+                                Update Target 2026
+                            </button>
+                        )}
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -142,7 +157,12 @@ export default function IkuDashboard({ ikuScores, tracerStats, mbkmStats, sdgSta
                                 </div>
                                 <h4 className="text-sm font-bold text-gray-800 mb-6 h-10 leading-snug">{iku.name}</h4>
                                 <div className="flex items-end justify-between">
-                                    <span className="text-3xl font-black text-gray-900">{iku.score}%</span>
+                                    <div>
+                                        <span className="text-3xl font-black text-gray-900">{iku.score}%</span>
+                                        {isLppm && iku.target && (
+                                            <p className="text-[10px] font-bold text-gray-400 mt-1">Target: {iku.target}</p>
+                                        )}
+                                    </div>
                                     <div className="w-12 h-1.5 bg-gray-100 rounded-full overflow-hidden">
                                         <div 
                                             className={`h-full rounded-full ${

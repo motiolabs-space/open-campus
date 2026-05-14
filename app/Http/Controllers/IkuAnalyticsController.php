@@ -8,6 +8,7 @@ use App\Models\SocialPost;
 use App\Models\User;
 use App\Models\ResearchProject;
 use App\Models\Partnership;
+use App\Models\IkuTarget;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
@@ -45,14 +46,17 @@ class IkuAnalyticsController extends Controller
             ->orderBy('sdg_tag')
             ->get();
 
+        // 7. IKU Targets (LPPM Role)
+        $targets = IkuTarget::where('year', 2026)->get()->keyBy('iku_id');
+
         // Dynamic 12 IKU Scores Calculation
         $ikuScores = [
-            ['id' => 1, 'name' => 'Kesiapan Lulusan (IKU 1)', 'score' => min(100, ($totalGraduates > 0 ? 80 : 0)), 'status' => 'Good', 'type' => 'Wajib'],
-            ['id' => 2, 'name' => 'Pengalaman Luar Kampus (IKU 2)', 'score' => min(100, $totalMbkm * 5), 'status' => $totalMbkm > 10 ? 'Good' : 'Warning', 'type' => 'Wajib'],
-            ['id' => 3, 'name' => 'Dosen Berkegiatan di Luar (IKU 3)', 'score' => 68, 'status' => 'Critical', 'type' => 'Wajib'],
-            ['id' => 4, 'name' => 'Praktisi Mengajar (IKU 4)', 'score' => min(100, $totalExperts * 10), 'status' => $totalExperts > 5 ? 'Excellent' : 'Good', 'type' => 'Wajib'],
-            ['id' => 5, 'name' => 'Hasil Kerja Dosen (IKU 5)', 'score' => min(100, $totalResearch * 15), 'status' => $totalResearch > 3 ? 'Excellent' : 'Good', 'type' => 'Wajib'],
-            ['id' => 6, 'name' => 'Kemitraan Prodi (IKU 6)', 'score' => min(100, $activeMoUs * 8), 'status' => $activeMoUs > 10 ? 'Excellent' : 'Good', 'type' => 'Wajib'],
+            ['id' => 1, 'name' => 'Kesiapan Lulusan (IKU 1)', 'score' => min(100, ($totalGraduates > 0 ? 80 : 0)), 'status' => 'Good', 'type' => 'Wajib', 'target' => $targets['1']->target_value ?? 0],
+            ['id' => 2, 'name' => 'Pengalaman Luar Kampus (IKU 2)', 'score' => min(100, $totalMbkm * 5), 'status' => $totalMbkm > 10 ? 'Good' : 'Warning', 'type' => 'Wajib', 'target' => $targets['2']->target_value ?? 0],
+            ['id' => 3, 'name' => 'Dosen Berkegiatan di Luar (IKU 3)', 'score' => 68, 'status' => 'Critical', 'type' => 'Wajib', 'target' => $targets['3']->target_value ?? 0],
+            ['id' => 4, 'name' => 'Praktisi Mengajar (IKU 4)', 'score' => min(100, $totalExperts * 10), 'status' => $totalExperts > 5 ? 'Excellent' : 'Good', 'type' => 'Wajib', 'target' => $targets['4']->target_value ?? 0],
+            ['id' => 5, 'name' => 'Hasil Kerja Dosen (IKU 5)', 'score' => min(100, $totalResearch * 15), 'status' => $totalResearch > 3 ? 'Excellent' : 'Good', 'type' => 'Wajib', 'target' => $targets['5']->target_value ?? 0],
+            ['id' => 6, 'name' => 'Kemitraan Prodi (IKU 6)', 'score' => min(100, $activeMoUs * 8), 'status' => $activeMoUs > 10 ? 'Excellent' : 'Good', 'type' => 'Wajib', 'target' => $targets['6']->target_value ?? 0],
             ['id' => 7, 'name' => 'Pembelajaran Kolaboratif (IKU 7)', 'score' => 92, 'status' => 'Excellent', 'type' => 'Wajib'],
             ['id' => 8, 'name' => 'Akreditasi Internasional (IKU 8)', 'score' => 45, 'status' => 'Critical', 'type' => 'Wajib'],
             ['id' => 9, 'name' => 'Dampak SDGs & Sosial (IKU 9)', 'score' => min(100, $sdgStats->count() * 12), 'status' => 'Good', 'type' => 'Pilihan'],
@@ -66,6 +70,7 @@ class IkuAnalyticsController extends Controller
             'tracerStats' => $tracerStats,
             'mbkmStats' => $mbkmStats,
             'sdgStats' => $sdgStats,
+            'isLppm' => auth()->user()->hasRole('lppm'),
             'totals' => [
                 'graduates' => $totalGraduates,
                 'mbkm' => $totalMbkm,
