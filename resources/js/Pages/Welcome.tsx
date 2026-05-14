@@ -1,16 +1,16 @@
 import { Head, Link } from '@inertiajs/react';
 import { PageProps } from '@/types';
 
-export default function Welcome({ auth }: PageProps) {
+export default function Welcome({ auth, appName }: PageProps) {
     return (
         <>
-            <Head title="Campus Network | Bangun Jejaring Akademik & Karier" />
+            <Head title={`${appName} | Bangun Jejaring Akademik & Karier`} />
             
             <div className="bg-surface font-body-md text-on-surface min-h-screen">
                 {/* TopNavBar */}
                 <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm font-manrope antialiased">
                     <div className="max-w-[1280px] mx-auto flex items-center justify-between px-6 h-20">
-                        <div className="text-2xl font-extrabold tracking-tight text-blue-600">Campus Network</div>
+                        <div className="text-2xl font-extrabold tracking-tight text-blue-600">{appName}</div>
                         <div className="hidden md:flex items-center space-x-8">
                             <a className="text-blue-600 font-bold border-b-2 border-blue-600 pb-1 hover:text-blue-500 transition-all duration-200" href="#">Students</a>
                             <a className="text-gray-600 font-medium hover:text-blue-500 transition-all duration-200" href="#">Lecturers</a>
@@ -318,8 +318,8 @@ export default function Welcome({ auth }: PageProps) {
                 <footer className="bg-white border-t border-gray-100 py-16 font-manrope text-sm">
                     <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
                         <div className="space-y-6">
-                            <div className="text-lg font-bold text-blue-600">Campus Network</div>
-                            <p className="text-gray-500 max-w-sm">© 2024 Campus Network. The Modern Academic Social Platform. Bridging the gap between scholarship and industry.</p>
+                            <div className="text-lg font-bold text-blue-600">{appName}</div>
+                            <p className="text-gray-500 max-w-sm">© {new Date().getFullYear()} {appName}. The Modern Academic Social Platform. Bridging the gap between scholarship and industry.</p>
                             <div className="flex gap-4">
                                 <a className="p-2 bg-gray-50 rounded-full hover:text-blue-600 transition-colors" href="#"><span className="material-symbols-outlined">share</span></a>
                                 <a className="p-2 bg-gray-50 rounded-full hover:text-blue-600 transition-colors" href="#"><span className="material-symbols-outlined">alternate_email</span></a>
