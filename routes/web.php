@@ -4,6 +4,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\EvidenceController;
+use App\Http\Controllers\MarketplaceController;
+use App\Http\Controllers\TalentController;
+use App\Http\Controllers\NetworkController;
+use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\PddiktiController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -12,7 +18,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
 Route::get('/dashboard', function () {
     return redirect()->route('network.index');
@@ -39,9 +45,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/discover', function () {
         return Inertia::render('Project/Index');
     })->name('project.index');
-    Route::get('/jobs', function () {
-        return Inertia::render('Job/Index');
-    })->name('job.index');
+    Route::get('/marketplace', [MarketplaceController::class, 'index'])->name('marketplace.index');
+    Route::get('/marketplace/job/{job}', [MarketplaceController::class, 'show'])->name('marketplace.show');
+    Route::post('/marketplace/job/{job}/apply', [MarketplaceController::class, 'apply'])->name('marketplace.apply');
+    
+    Route::get('/talents', [TalentController::class, 'index'])->name('talents.index');
+    Route::get('/talents/{user}', [TalentController::class, 'show'])->name('talents.show');
+    Route::get('/talents/{user}/qr', function (App\Models\User $user, App\Services\QRService $qr) {
+        return response($qr->generateStudentQR($user->id))->header('Content-Type', 'image/png');
+    })->name('talents.qr');
     Route::get('/industry', function () {
         return Inertia::render('Industry/Show');
     })->name('industry.show');
@@ -57,9 +69,20 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/impact', function () {
         return Inertia::render('Impact/Index');
     })->name('impact.index');
-    Route::get('/admin/evidence', function () {
-        return Inertia::render('Admin/EvidenceReview');
-    })->name('admin.evidence');
+    Route::middleware(['role:admin_kampus|superadmin|dosen'])->group(function () {
+        Route::get('/admin/dashboard', [AnalyticsController::class, 'adminDashboard'])->name('admin.dashboard');
+        Route::get('/admin/report/export', [AnalyticsController::class, 'exportReport'])->name('admin.report.export');
+        Route::get('/admin/evidence', [EvidenceController::class, 'adminIndex'])->name('admin.evidence');
+        Route::post('/admin/evidence/{evidence}/verify', [EvidenceController::class, 'verify'])->name('admin.evidence.verify');
+        
+        // PDDIKTI Sync
+        Route::post('/admin/pddikti/sync/{evidence}', [PddiktiController::class, 'syncEvidence'])->name('admin.pddikti.sync');
+        Route::post('/admin/pddikti/bulk-sync', [PddiktiController::class, 'bulkSync'])->name('admin.pddikti.bulk-sync');
+    });
+    
+    Route::get('/evidence', [EvidenceController::class, 'index'])->name('evidence.index');
+    Route::get('/evidence/create', [EvidenceController::class, 'create'])->name('evidence.create');
+    Route::post('/evidence', [EvidenceController::class, 'store'])->name('evidence.store');
     Route::get('/messages', function () {
         return Inertia::render('Message/Index');
     })->name('messages.index');

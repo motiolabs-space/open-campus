@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, useForm, usePage } from '@inertiajs/react';
+import { Head, useForm, usePage, Link } from '@inertiajs/react';
 import { FormEventHandler, useState } from 'react';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
@@ -81,6 +81,10 @@ export default function NetworkIndex({ posts }: any) {
                                 <span className="material-symbols-outlined">bookmarks</span>
                                 Saved Posts
                             </a>
+                            <Link href={route('evidence.index')} className="text-gray-600 hover:bg-gray-100 rounded-lg px-4 py-3 flex items-center gap-3 font-manrope text-sm font-medium hover:translate-x-1 transition-transform duration-200 cursor-pointer">
+                                <span className="material-symbols-outlined">analytics</span>
+                                My IKU Report
+                            </Link>
                         </nav>
                     </div>
                 </aside>
@@ -218,6 +222,38 @@ export default function NetworkIndex({ posts }: any) {
 
                 {/* Right Sidebar */}
                 <aside className="md:col-span-3 space-y-6 hidden lg:block">
+                    {/* IKU Progress Card */}
+                    <div className="bg-white p-6 rounded-[1.5rem] shadow-sm border border-gray-100 bg-gradient-to-br from-white to-blue-50/30">
+                        <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-headline-md text-base font-bold text-gray-900">IKU Progress</h3>
+                            <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">3/12 Verified</span>
+                        </div>
+                        <div className="space-y-4">
+                            <div>
+                                <div className="flex justify-between text-xs mb-1">
+                                    <span className="text-gray-500 font-medium">IKU 3: MBKM</span>
+                                    <span className="font-bold text-primary">80%</span>
+                                </div>
+                                <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                                    <div className="h-full bg-primary rounded-full w-[80%]"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="flex justify-between text-xs mb-1">
+                                    <span className="text-gray-500 font-medium">IKU 6: Riset</span>
+                                    <span className="font-bold text-emerald-500">45%</span>
+                                </div>
+                                <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+                                    <div className="h-full bg-emerald-500 rounded-full w-[45%]"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <Link href={route('evidence.index')} className="mt-6 w-full py-2.5 bg-surface-container-high text-gray-700 text-xs font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-200 transition-colors">
+                            Manage Evidence
+                            <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                        </Link>
+                    </div>
+
                     <div className="bg-white p-6 rounded-[1.5rem] shadow-sm border border-gray-100">
                         <h3 className="font-headline-md text-base font-bold text-gray-900 mb-4">Trending on Campus</h3>
                         <ul className="space-y-4">

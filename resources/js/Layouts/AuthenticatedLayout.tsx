@@ -15,7 +15,7 @@ export default function AuthenticatedLayout({
             <nav className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
                 <div className="max-w-[1280px] mx-auto flex items-center justify-between px-6 h-20">
                     <div className="flex items-center gap-8">
-                        <Link href="/" className="text-2xl font-extrabold tracking-tight text-primary font-display-lg">{appName}</Link>
+                        <Link href={route('welcome')} className="text-2xl font-extrabold tracking-tight text-primary font-display-lg">{appName}</Link>
                         <div className="relative hidden lg:block">
                             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
                             <input className="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 w-64 focus:ring-2 focus:ring-primary text-sm" placeholder="Search research, students, or jobs" type="text"/>
@@ -53,6 +53,30 @@ export default function AuthenticatedLayout({
                                 <span className="text-[10px] font-label-md">Notifications</span>
                                 <span className="absolute top-2 right-1 bg-red-500 w-2 h-2 rounded-full"></span>
                             </Link>
+                            <Link href={route('evidence.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                <span className="material-symbols-outlined">analytics</span>
+                                <span className="text-[10px] font-label-md">IKU Report</span>
+                            </Link>
+                            <Link href={route('marketplace.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                <span className="material-symbols-outlined">shopping_cart</span>
+                                <span className="text-[10px] font-label-md">Marketplace</span>
+                            </Link>
+                            <Link href={route('talents.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                <span className="material-symbols-outlined">groups</span>
+                                <span className="text-[10px] font-label-md">Talents</span>
+                            </Link>
+                            {auth.user.roles?.some((r: any) => r.name === 'superadmin' || r.name === 'admin_kampus' || r.name === 'dosen') && (
+                                <div className="flex gap-4 items-center">
+                                    <Link href={route('admin.dashboard')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                        <span className="material-symbols-outlined text-primary">dashboard_customize</span>
+                                        <span className="text-[10px] font-label-md">Analytics</span>
+                                    </Link>
+                                    <Link href={route('admin.evidence')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                                        <span className="material-symbols-outlined">admin_panel_settings</span>
+                                        <span className="text-[10px] font-label-md">Admin IKU</span>
+                                    </Link>
+                                </div>
+                            )}
                         </div>
                         <div className="flex items-center gap-3 border-l pl-6 border-gray-100 relative">
                             <Dropdown>

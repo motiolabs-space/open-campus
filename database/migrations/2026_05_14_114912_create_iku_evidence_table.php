@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('file_path');
             $table->string('original_filename');
             $table->string('mime_type');
+            $table->text('description')->nullable();
             $table->integer('iku_category')->nullable(); // e.g., 1 to 8
             $table->text('ai_ocr_text')->nullable(); // Extracted text
             $table->json('ai_analysis')->nullable(); // AI reasoning, confidence score, etc.

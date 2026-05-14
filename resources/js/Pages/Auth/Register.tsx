@@ -1,4 +1,4 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { useState, FormEventHandler } from 'react';
 import InputError from '@/Components/InputError';
 
@@ -39,7 +39,7 @@ export default function Register() {
 
             {/* Top Navigation Bar */}
             <header className="bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 shadow-sm flex justify-between items-center px-6 h-16 w-full sticky top-0 z-50 font-manrope antialiased">
-                <Link href="/" className="text-xl font-extrabold tracking-tight text-blue-600 dark:text-blue-400">
+                <Link href={route('welcome')} className="text-xl font-extrabold tracking-tight text-blue-600 dark:text-blue-400">
                     {appName}
                 </Link>
                 <div className="flex items-center gap-4">

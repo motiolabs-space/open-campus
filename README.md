@@ -84,22 +84,35 @@ Ruang kolaborasi antara dunia akademik dan industri untuk pencarian bakat, lowon
 - [x] Integrasi Single Sign-On (SSO) Kampus.
 - [x] Desain Sistem & Branding Dinamis via `.env`.
 
-### 🔄 Tahap 2: Social Network Engine (Dalam Pengembangan)
+### ✅ Tahap 2: Social Network Engine (Selesai)
 - [x] Skema Database Social Feed (Post, Comment, Like).
 - [x] Backend Controller & API Data Mapping.
 - [x] UI Feed Dinamis dengan React & Inertia.js.
-- [ ] Fitur Unggah Media (Gambar & Dokumen).
-- [ ] Sistem Notifikasi Real-time.
+- [x] Fitur Unggah Media (Gambar & Dokumen).
+- [x] Sistem Notifikasi Real-time.
 
-### 🔜 Tahap 3: AI-Driven Evidence Review (Segera Datang)
-- [ ] Modul Unggah Evidence (Bukti Magang/MBKM).
-- [ ] Integrasi AI Classifier untuk pemetaan IKU (Indikator Kinerja Utama).
-- [ ] Dashboard Reviewer untuk Dosen & Admin.
+### ✅ Tahap 3: AI-Driven Evidence Review (Selesai)
+- [x] Modul Unggah Evidence (Bukti Magang/MBKM/Prestasi).
+- [x] Integrasi AI Classifier Multi-provider (Gemini, OpenAI, Claude, Ollama).
+- [x] Dashboard Reviewer untuk Dosen & Admin dengan fitur Override Kategori.
+- [x] Sistem Pemetaan Otomatis ke 12 IKU Terbaru.
 
-### 🚀 Tahap 4: Talent & Marketplace
-- [ ] Dashboard Lowongan Industri.
-- [ ] Portofolio Mahasiswa Terverifikasi AI.
-- [ ] Fitur Matchmaking antara Mahasiswa & Proyek Riset Dosen.
+### ✅ Tahap 4: Talent & Marketplace (Selesai)
+- [x] Modul Lowongan Kerja & Magang Industri.
+- [x] Profil Talent Terverifikasi (IKU-based Portfolio).
+- [x] Sistem Matchmaking AI untuk Karir Mahasiswa.
+- [x] Fitur Lamaran Langsung & Tracking Status.
+
+### ✅ Tahap 5: Network Analytics & Governance (Selesai)
+- [x] Dashboard IKU Eksekutif (Rektorat/Dekanat).
+- [x] Sinkronisasi Data ke Pangkalan Data Pendidikan Tinggi (PDDIKTI).
+- [x] Laporan Kinerja Jaringan Kampus (untuk Network Mode).
+
+### ✅ Tahap 6: Mobile Experience & Scale-up (Selesai)
+- [x] Implementasi API Ecosystem & Mobile Auth (Sanctum).
+- [x] Integrasi QR-Code Dinamis untuk Talent Portfolio.
+- [x] Dokumentasi API untuk Integrasi Pihak Ketiga (API_DOCS.md).
+- [x] Optimasi Mobile Accessibility.
 
 ---
 
