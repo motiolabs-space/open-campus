@@ -31,7 +31,7 @@ export default function AuthenticatedLayout({
                                 <span className="material-symbols-outlined">group</span>
                                 <span className="text-[10px] font-label-md">Network</span>
                             </Link>
-                            <Link href={route('job.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
+                            <Link href={route('marketplace.index')} className="flex flex-col items-center justify-center text-gray-600 hover:text-primary transition-all px-2">
                                 <span className="material-symbols-outlined">work</span>
                                 <span className="text-[10px] font-label-md">Jobs</span>
                             </Link>
@@ -141,7 +141,7 @@ export default function AuthenticatedLayout({
                     <span className="material-symbols-outlined">notifications</span>
                     <span className="text-[10px] font-label-md">Alerts</span>
                 </Link>
-                <Link href={route('job.index')} className="text-outline flex flex-col items-center">
+                <Link href={route('marketplace.index')} className="text-outline flex flex-col items-center">
                     <span className="material-symbols-outlined">work</span>
                     <span className="text-[10px] font-label-md">Jobs</span>
                 </Link>

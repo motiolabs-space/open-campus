@@ -70,14 +70,48 @@ class RoleAndUserSeeder extends Seeder
             'department' => 'Sistem Informasi',
         ]);
         
-        // Create Industry Dummy
-        $industry = \App\Models\User::firstOrCreate(
-            ['email' => 'hr@techcorp.com'],
+        // Create Admin Kampus (LPPM / Penjamin Mutu)
+        $adminKampus = \App\Models\User::firstOrCreate(
+            ['email' => 'lppm@kampus.ac.id'],
             [
-                'name' => 'TechCorp HR',
+                'name' => 'Bagian Penjamin Mutu (LPPM)',
+                'password' => bcrypt('password'),
+                'role' => 'admin_kampus',
+                'headline' => 'Lembaga Penelitian dan Pengabdian kepada Masyarakat',
+                'bio' => 'Bertanggung jawab atas pengelolaan data IKU dan akreditasi kampus.',
+            ]
+        );
+        $adminKampus->assignRole('admin_kampus');
+
+        // Create Another Student (Active in MBKM)
+        $mahasiswa2 = \App\Models\User::firstOrCreate(
+            ['email' => 'ani.wijaya@kampus.ac.id'],
+            [
+                'name' => 'Ani Wijaya',
+                'password' => bcrypt('password'),
+                'role' => 'mahasiswa',
+                'headline' => 'Mahasiswa Berprestasi | MBKM Awardee',
+                'bio' => 'Aktif dalam kegiatan magang industri dan pengabdian masyarakat.',
+                'impact_score' => 420,
+            ]
+        );
+        $mahasiswa2->assignRole('mahasiswa');
+        $mahasiswa2->academicProfile()->firstOrCreate([
+            'nim_nidn' => '20261002',
+            'faculty' => 'Fakultas Ekonomi',
+            'department' => 'Manajemen',
+            'batch_year' => '2022',
+        ]);
+        
+        // Create Industry Partner (Recruiter)
+        $industry = \App\Models\User::firstOrCreate(
+            ['email' => 'recruitment@google.com'],
+            [
+                'name' => 'Google Indonesia Recruitment',
                 'password' => bcrypt('password'),
                 'role' => 'industri',
-                'headline' => 'Talent Acquisition at TechCorp',
+                'headline' => 'University Graduate Recruiter',
+                'bio' => 'Mencari talenta terbaik dari universitas mitra untuk program magang dan full-time.',
             ]
         );
         $industry->assignRole('industri');
