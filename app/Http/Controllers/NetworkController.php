@@ -24,21 +24,27 @@ class NetworkController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, \App\Services\DataHarvestingService $harvester)
     {
         $validated = $request->validate([
             'content' => 'required|string|max:2000',
             'sdg_tag' => 'nullable|integer|min:1|max:17',
         ]);
 
-        SocialPost::create([
+        $post = SocialPost::create([
             'user_id' => $request->user()->id,
             'content' => $validated['content'],
             'sdg_tag' => $validated['sdg_tag'] ?? null,
             'type' => 'post',
         ]);
 
-        return redirect()->back()->with('message', 'Post created successfully!');
+        // Automatically harvest data for compliance reporting
+        $harvested = $harvester->harvest($post);
+
+        return redirect()->back()->with([
+            'message' => 'Post created successfully!',
+            'harvested' => $harvested
+        ]);
     }
 
     public function comment(Request $request, SocialPost $post)

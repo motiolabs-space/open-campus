@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 dayjs.extend(relativeTime);
 
 export default function NetworkIndex({ posts }: any) {
-    const { auth, appName } = usePage().props as any;
+    const { auth, appName, flash } = usePage().props as any;
     const sdgs = [
         { id: 1, name: 'No Poverty', color: '#E5243B' },
         { id: 2, name: 'Zero Hunger', color: '#DDA63A' },
@@ -64,6 +64,26 @@ export default function NetworkIndex({ posts }: any) {
         <AuthenticatedLayout>
             <Head title={`My Network | ${appName}`} />
 
+            {/* Flash Messages / Harvesting Notification */}
+            {flash?.harvested && flash.harvested.length > 0 && (
+                <div className="fixed bottom-10 right-10 z-50 animate-in slide-in-from-right-10 fade-in duration-500">
+                    <div className="bg-emerald-600 text-white p-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-emerald-400/30">
+                        <div className="bg-white/20 p-2 rounded-full">
+                            <span className="material-symbols-outlined text-white">auto_awesome</span>
+                        </div>
+                        <div>
+                            <h4 className="font-bold text-sm">OSCN Intelligence</h4>
+                            {flash.harvested.map((msg: string, i: number) => (
+                                <p key={i} className="text-[11px] text-emerald-100">{msg}</p>
+                            ))}
+                        </div>
+                        <button className="ml-4 text-white/50 hover:text-white transition-colors">
+                            <span className="material-symbols-outlined text-sm">close</span>
+                        </button>
+                    </div>
+                </div>
+            )}
+
             <main className="max-w-[1280px] mx-auto px-6 py-8 grid grid-cols-1 md:grid-cols-12 gap-8">
                 {/* Left Sidebar */}
                 <aside className="md:col-span-3 space-y-6 hidden md:block">
@@ -90,6 +110,30 @@ export default function NetworkIndex({ posts }: any) {
                         </div>
                     </div>
 
+                    <div className="bg-gradient-to-br from-indigo-600 to-blue-700 p-6 rounded-[1.5rem] shadow-lg text-white">
+                        <div className="flex items-center gap-2 mb-4">
+                            <span className="material-symbols-outlined text-white/80">auto_awesome</span>
+                            <h3 className="font-bold text-sm">Compliance Assistant</h3>
+                        </div>
+                        <p className="text-xs text-white/80 leading-relaxed mb-4">
+                            Sistem kami mendeteksi postingan Anda untuk membantu pelaporan IKU kampus secara otomatis.
+                        </p>
+                        <ul className="space-y-2">
+                            <li className="flex items-center gap-2 text-[10px] font-medium bg-white/10 p-2 rounded-lg border border-white/10">
+                                <span className="font-bold text-blue-200">#prestasi</span>
+                                <span>Input SIMBELMAWA</span>
+                            </li>
+                            <li className="flex items-center gap-2 text-[10px] font-medium bg-white/10 p-2 rounded-lg border border-white/10">
+                                <span className="font-bold text-blue-200">#riset</span>
+                                <span>Input BIMA / SISTER</span>
+                            </li>
+                            <li className="flex items-center gap-2 text-[10px] font-medium bg-white/10 p-2 rounded-lg border border-white/10">
+                                <span className="font-bold text-blue-200">#magang</span>
+                                <span>Input PDDIKTI</span>
+                            </li>
+                        </ul>
+                    </div>
+
                     <div className="flex flex-col h-fit space-y-1">
                         <nav className="space-y-1">
                             <a className="bg-blue-50 text-blue-700 rounded-lg px-4 py-3 flex items-center gap-3 font-manrope text-sm font-medium hover:translate-x-1 transition-transform duration-200 cursor-pointer">
@@ -99,10 +143,6 @@ export default function NetworkIndex({ posts }: any) {
                             <a className="text-gray-600 hover:bg-gray-100 rounded-lg px-4 py-3 flex items-center gap-3 font-manrope text-sm font-medium hover:translate-x-1 transition-transform duration-200 cursor-pointer">
                                 <span className="material-symbols-outlined">group</span>
                                 My Network
-                            </a>
-                            <a className="text-gray-600 hover:bg-gray-100 rounded-lg px-4 py-3 flex items-center gap-3 font-manrope text-sm font-medium hover:translate-x-1 transition-transform duration-200 cursor-pointer">
-                                <span className="material-symbols-outlined">bookmarks</span>
-                                Saved Posts
                             </a>
                             <Link href={route('evidence.index')} className="text-gray-600 hover:bg-gray-100 rounded-lg px-4 py-3 flex items-center gap-3 font-manrope text-sm font-medium hover:translate-x-1 transition-transform duration-200 cursor-pointer">
                                 <span className="material-symbols-outlined">analytics</span>
@@ -124,7 +164,7 @@ export default function NetworkIndex({ posts }: any) {
                                 <div className="flex-1 space-y-3">
                                     <textarea
                                         className="w-full bg-surface-container-low border-none rounded-xl resize-none text-sm p-3 focus:ring-2 focus:ring-primary min-h-[80px]"
-                                        placeholder="Share impact, research, or campus updates..."
+                                        placeholder="Share impact, research, or campus updates... (use #prestasi, #riset, or #magang)"
                                         value={data.content}
                                         onChange={e => setData('content', e.target.value)}
                                         required
@@ -204,11 +244,14 @@ export default function NetworkIndex({ posts }: any) {
                     {posts.data.map((post: any) => (
                         <div key={post.id} className="bg-white p-5 rounded-[1.5rem] shadow-sm border border-gray-100 space-y-4 relative overflow-hidden group">
                             {post.sdg_tag && (
-                                <div 
-                                    className="absolute top-0 right-0 px-4 py-1 rounded-bl-2xl text-[9px] font-bold text-white uppercase tracking-widest shadow-sm"
-                                    style={{ backgroundColor: sdgs.find(s => s.id === post.sdg_tag)?.color }}
-                                >
-                                    SDG {post.sdg_tag}: {sdgs.find(s => s.id === post.sdg_tag)?.name}
+                                <div className="flex items-center gap-2 mb-2">
+                                    <span className="px-2 py-0.5 bg-emerald-600 text-white text-[9px] font-bold rounded-md animate-pulse">BERDAMPAK</span>
+                                    <div 
+                                        className="px-3 py-0.5 rounded-full text-[9px] font-bold text-white uppercase tracking-widest shadow-sm"
+                                        style={{ backgroundColor: sdgs.find(s => s.id === post.sdg_tag)?.color }}
+                                    >
+                                        SDG {post.sdg_tag}: {sdgs.find(s => s.id === post.sdg_tag)?.name}
+                                    </div>
                                 </div>
                             )}
                             <div className="flex items-center justify-between">
@@ -232,6 +275,18 @@ export default function NetworkIndex({ posts }: any) {
                             </div>
 
                             <p className="text-gray-800 text-sm whitespace-pre-line">{post.content}</p>
+
+                            {post.metadata?.impact && (
+                                <div className="bg-emerald-50 border-l-4 border-emerald-500 p-3 rounded-r-xl my-2 animate-in slide-in-from-left-2">
+                                    <div className="flex items-center gap-2 mb-1">
+                                        <span className="material-symbols-outlined text-emerald-600 text-sm">verified</span>
+                                        <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-wider">Capaian Dampak</span>
+                                    </div>
+                                    <p className="text-xs italic text-emerald-800 leading-relaxed">
+                                        "{post.metadata.impact}"
+                                    </p>
+                                </div>
+                            )}
 
                             <div className="flex items-center gap-6 border-t border-b border-gray-50 py-2">
                                 <button className="flex items-center gap-2 text-gray-500 hover:text-primary transition-colors">
@@ -291,8 +346,6 @@ export default function NetworkIndex({ posts }: any) {
                             </div>
                         </div>
                     ))}
-                    
-                    {/* Pagination or Load More could go here */}
                 </section>
 
                 {/* Right Sidebar */}
