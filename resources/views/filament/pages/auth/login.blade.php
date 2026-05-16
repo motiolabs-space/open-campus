@@ -272,6 +272,19 @@
         background: white !important;
     }
 
+    .fi-input-wrp input {
+        color: #0f172a !important; /* Dark slate text */
+    }
+
+    .fi-input-wrp input::placeholder {
+        color: #94a3b8 !important;
+    }
+
+    .fi-fo-field-wrp-label label {
+        color: #334155 !important;
+        font-weight: 600 !important;
+    }
+
     .fi-input-wrp:focus-within {
         border-color: var(--primary) !important;
         box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1) !important;
