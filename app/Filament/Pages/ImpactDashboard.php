@@ -13,6 +13,11 @@ class ImpactDashboard extends Page
     protected static ?string $title = 'Impact Analytics Hub';
     protected static string | \UnitEnum | null $navigationGroup = 'Sistem IKU';
 
+    public static function canAccess(): bool
+    {
+        return auth()->user()?->hasRole(['admin', 'super_admin']) || auth()->user()?->role === 'admin';
+    }
+
     protected string $view = 'filament.pages.impact-dashboard';
 
     protected function getHeaderWidgets(): array
