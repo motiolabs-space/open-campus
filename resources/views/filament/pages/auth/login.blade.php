@@ -28,10 +28,6 @@
                 </div>
                 <h1>Selamat Datang</h1>
                 <p>Dashboard Kampus Terintegrasi • Bridge 2.0</p>
-            </div>
-
-            <div class="login-body">
-                @livewire('notifications')
 
                 @if (session()->has('error') || $errors->any())
                     <div class="login-alert-error">
@@ -42,6 +38,10 @@
                         @endif
                     </div>
                 @endif
+            </div>
+
+            <div class="login-body">
+                @livewire('notifications')
 
                 <form wire:submit.prevent="authenticate" class="premium-form">
                     {{ $this->form }}
@@ -244,13 +244,9 @@
     }
 
     .login-alert-error {
-        background-color: #fef2f2;
-        border: 1px solid #fee2e2;
-        color: #b91c1c;
-        padding: 12px;
-        border-radius: 14px;
+        color: #ef4444; /* Clean red */
         font-size: 0.875rem;
-        margin-bottom: 24px;
+        margin-top: 16px;
         text-align: center;
         font-weight: 600;
         animation: shake 0.5s both;
