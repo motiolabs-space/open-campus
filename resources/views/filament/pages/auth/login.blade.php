@@ -10,7 +10,7 @@
 <meta property="og:description" content="{{ env('SEO_DESCRIPTION') }}">
 <meta property="og:image" content="{{ env('SEO_OG_IMAGE') }}">
 
-<link rel="icon" href="data:;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAAAAB3u9SAAAAAnRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN793KAAAAFklEQVR4AWP4z/AfDBgYmBggDAf/f2CA8P8/A4TBAKkBCAEAIQADAIQA" />
+<link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}" />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <div class="premium-login-root">
