@@ -1,5 +1,6 @@
 @filamentStyles
 @filamentScripts
+<link rel="icon" href="data:;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAAAAB3u9SAAAAAnRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN793KAAAAFklEQVR4AWP4z/AfDBgYmBggDAf/f2CA8P8/A4TBAKkBCAEAIQADAIQA" />
 
 <div class="split-login-container">
     <!-- Left Column: Image -->
