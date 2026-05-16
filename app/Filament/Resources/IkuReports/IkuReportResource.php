@@ -52,6 +52,20 @@ class IkuReportResource extends Resource
                             ->required(),
                     ])->columns(2),
 
+                Section::make('Verifikasi Internal Kampus')
+                    ->description('Lakukan koreksi dan tandai sebagai siap lapor.')
+                    ->schema([
+                        Forms\Components\Toggle::make('is_reviewed')
+                            ->label('Sudah Dikoreksi & Disetujui Kampus')
+                            ->helperText('Hanya data yang disetujui yang dapat dikirim massal ke kementerian.')
+                            ->onIcon('heroicon-m-check-badge')
+                            ->color('success'),
+                        Forms\Components\Textarea::make('correction_notes')
+                            ->label('Catatan Koreksi (Internal)')
+                            ->placeholder('Contoh: Nominal diperbaiki dari Rp 5jt ke Rp 7jt sesuai invoice terbaru...')
+                            ->columnSpanFull(),
+                    ]),
+
                 Section::make('Umpan Balik API (Technical)')
                     ->collapsed()
                     ->schema([
@@ -86,16 +100,18 @@ class IkuReportResource extends Resource
                         'verified' => 'success',
                         'rejected' => 'danger',
                     }),
+                Tables\Columns\IconColumn::make('is_reviewed')
+                    ->label('Review')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-badge')
+                    ->trueColor('success')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->falseColor('gray'),
                 TextColumn::make('reported_at')
                     ->label('Tgl Lapor')
                     ->dateTime('d M Y H:i')
                     ->sortable()
                     ->toggleable(),
-                TextColumn::make('created_at')
-                    ->label('Masuk Sistem')
-                    ->dateTime('d M Y')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('iku_number')
@@ -106,6 +122,8 @@ class IkuReportResource extends Resource
                         'IKU 9' => 'IKU 9 (Income)',
                     ]),
                 Tables\Filters\SelectFilter::make('status'),
+                Tables\Filters\TernaryFilter::make('is_reviewed')
+                    ->label('Status Review Kampus'),
                 Tables\Filters\Filter::make('created_at')
                     ->form([
                         Forms\Components\DatePicker::make('created_from')->label('Dari Tanggal'),
@@ -122,7 +140,7 @@ class IkuReportResource extends Resource
                     ->label('Push Single')
                     ->icon('heroicon-o-paper-airplane')
                     ->color('success')
-                    ->hidden(fn ($record) => $record->status !== 'draft')
+                    ->hidden(fn ($record) => $record->status !== 'draft' || !$record->is_reviewed)
                     ->requiresConfirmation()
                     ->action(function ($record) {
                         $record->update([
@@ -136,13 +154,15 @@ class IkuReportResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\BulkAction::make('bulk_push')
-                        ->label('Push Massal ke Kemendiktisaintek')
+                        ->label('Push Massal (Hanya yang Disetujui)')
                         ->icon('heroicon-o-cloud-arrow-up')
                         ->color('success')
                         ->requiresConfirmation()
                         ->action(function ($records) {
+                            $reviewedCount = $records->where('is_reviewed', true)->count();
+                            
                             $records->each(function ($record) {
-                                if ($record->status === 'draft') {
+                                if ($record->status === 'draft' && $record->is_reviewed) {
                                     $record->update([
                                         'status' => 'synced',
                                         'reported_at' => now(),
@@ -150,11 +170,19 @@ class IkuReportResource extends Resource
                                 }
                             });
 
-                            \Filament\Notifications\Notification::make()
-                                ->title('Sinkronisasi Massal Berhasil')
-                                ->body(count($records) . ' data telah diantrekan untuk pelaporan kementerian.')
-                                ->success()
-                                ->send();
+                            if ($reviewedCount > 0) {
+                                \Filament\Notifications\Notification::make()
+                                    ->title('Sinkronisasi Berhasil')
+                                    ->body($reviewedCount . ' data yang telah disetujui kampus berhasil dikirim.')
+                                    ->success()
+                                    ->send();
+                            } else {
+                                \Filament\Notifications\Notification::make()
+                                    ->title('Gagal Mengirim')
+                                    ->body('Tidak ada data yang ditandai "Sudah Disetujui" dalam pilihan Anda.')
+                                    ->danger()
+                                    ->send();
+                            }
                         }),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),

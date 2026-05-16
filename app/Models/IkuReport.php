@@ -12,6 +12,8 @@ class IkuReport extends Model
         'reportable_id',
         'reportable_type',
         'status',
+        'correction_notes',
+        'is_reviewed',
         'api_response',
         'evidence_path',
         'reported_at',
@@ -20,6 +22,7 @@ class IkuReport extends Model
 
     protected $casts = [
         'api_response' => 'array',
+        'is_reviewed' => 'boolean',
         'reported_at' => 'datetime',
         'verified_at' => 'datetime',
     ];
