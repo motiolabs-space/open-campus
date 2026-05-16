@@ -48,7 +48,7 @@
             </div>
 
             <div class="login-footer">
-                <p>Powered by <span>OSCN</span></p>
+                <p>Powered by <a href="https://github.com/motiolabs-space/open-campus/" target="_blank"><span>OSCN</span></a></p>
             </div>
         </div>
     </div>
@@ -270,9 +270,18 @@
         font-weight: 400;
     }
 
+    .login-footer a {
+        text-decoration: none;
+    }
+
     .login-footer span {
         font-weight: 600;
         color: var(--primary);
+        transition: color 0.3s;
+    }
+
+    .login-footer a:hover span {
+        color: var(--primary-dark);
     }
 
     /* Override Filament Styles to match premium look */
