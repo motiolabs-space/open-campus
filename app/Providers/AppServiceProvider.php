@@ -21,5 +21,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Vite::prefetch(concurrency: 3);
+
+        \App\Models\Research::observe(\App\Observers\ResearchObserver::class);
+        \App\Models\InstitutionalIncome::observe(\App\Observers\InstitutionalIncomeObserver::class);
     }
 }
