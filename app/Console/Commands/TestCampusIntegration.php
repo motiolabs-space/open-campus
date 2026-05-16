@@ -45,6 +45,18 @@ class TestCampusIntegration extends Command
                 }
             }
 
+            if ($this->confirm("Do you want to test OUTGOING sync (to external)?")) {
+                $type = $this->choice('What type of data to send?', ['mbkm', 'research', 'achievement'], 0);
+                
+                $this->info("Sending mock {$type} data...");
+                $success = $integration->syncOutgoing([
+                    'type' => $type,
+                    'record' => ['title' => 'Sample OSCN Activity', 'student_id' => 'MHS001']
+                ]);
+
+                $this->info($success ? "Outgoing Sync Success!" : "Outgoing Sync Failed.");
+            }
+
         } catch (\Exception $e) {
             $this->error("Error: " . $e->getMessage());
         }

@@ -19,6 +19,7 @@ class MbkmActivity extends Model
         'end_date',
         'status',
         'iku_category',
+        'impact_statement',
         'reporting_status',
         'reported_at',
     ];
