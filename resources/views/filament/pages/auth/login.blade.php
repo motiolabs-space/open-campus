@@ -309,9 +309,22 @@
         color: #94a3b8 !important;
     }
 
-    .fi-fo-field-wrp-label label {
-        color: #334155 !important;
+    .fi-fo-field-wrp-label label, 
+    .fi-checkbox-label,
+    .fi-simple-page-header-subheading,
+    .fi-fo-field-wrp-helper-text {
+        color: #334155 !important; /* Dark slate */
         font-weight: 600 !important;
+    }
+
+    .fi-checkbox-input {
+        border-color: #cbd5e1 !important;
+        background-color: white !important;
+    }
+
+    .fi-checkbox-input:checked {
+        background-color: var(--primary) !important;
+        border-color: var(--primary) !important;
     }
 
     .fi-input-wrp:focus-within {
