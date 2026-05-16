@@ -1,30 +1,26 @@
 @filamentStyles
 @filamentScripts
 <link rel="icon" href="data:;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAAAAB3u9SAAAAAnRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN793KAAAAFklEQVR4AWP4z/AfDBgYmBggDAf/f2CA8P8/A4TBAKkBCAEAIQADAIQA" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<div class="split-login-container">
-    <!-- Left Column: Image -->
-    <div class="login-visual">
-        <img src="{{ asset('images/campus.png') }}" alt="Campus">
-        <div class="visual-overlay"></div>
-        <div class="visual-content">
-            <h1>Open Source Campus Network</h1>
-            <p>Membangun Ekosistem Akademik Digital yang Transparan dan Terintegrasi.</p>
-        </div>
+<div class="premium-login-root">
+    <div class="animated-bg">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
     </div>
 
-    <!-- Right Column: Form -->
-    <div class="login-form-side">
-        <div class="form-wrapper">
+    <div class="login-card-container">
+        <div class="glass-card">
             <div class="login-header">
-                <div class="logo-container">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                <div class="logo-wrapper">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="main-logo">
                 </div>
-                <h2>Selamat Datang</h2>
-                <p>Silakan masukkan kredensial admin Anda</p>
+                <h1>OSCN Dashboard</h1>
+                <p>Open Source Campus Network • Bridge 2.0</p>
             </div>
 
-            <div class="filament-form-card">
+            <div class="login-body">
                 @livewire('notifications')
 
                 @if (session()->has('error') || $errors->any())
@@ -32,237 +28,255 @@
                         @if (session()->has('error'))
                             {{ session('error') }}
                         @else
-                            Email atau password salah. Silakan coba lagi.
+                            Email atau password salah.
                         @endif
                     </div>
                 @endif
 
-                <form wire:submit.prevent="authenticate" class="space-y-8">
+                <form wire:submit.prevent="authenticate" class="premium-form">
                     {{ $this->form }}
 
-                    <button type="submit" class="login-submit-btn">
-                        Sign In to Dashboard
+                    <button type="submit" class="premium-submit-btn">
+                        <span>Sign In to System</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="btn-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
                     </button>
                 </form>
             </div>
 
-            <footer class="login-footer">
-                <p>Powered by <span>OSCN</span></p>
-            </footer>
+            <div class="login-footer">
+                <p>© 2026 Powered by <span>Advanced Campus Engine</span></p>
+            </div>
         </div>
     </div>
 </div>
 
 <style>
     :root {
-        --primary-blue: #1e3a8a;
-        --text-gray: #4b5563;
+        --primary: #0ea5e9;
+        --primary-dark: #0284c7;
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.3);
     }
 
     body {
         margin: 0;
-        padding: 0;
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: 'Outfit', sans-serif;
         overflow: hidden;
+        background-color: #f0f9ff;
     }
 
-    .split-login-container {
-        display: flex;
-        min-height: 100vh;
-        background-color: #f9fafb;
-    }
-
-    /* Visual Side */
-    .login-visual {
-        display: none;
+    .premium-login-root {
         position: relative;
-        width: 50%;
-        background-color: var(--primary-blue);
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at top left, #e0f2fe 0%, #f0f9ff 100%);
+    }
+
+    /* Animated Background */
+    .animated-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
         overflow: hidden;
     }
 
-    @media (min-width: 1024px) {
-        .login-visual {
-            display: block;
-        }
+    .circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+        animation: float 20s infinite alternate;
     }
 
-    .login-visual img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        opacity: 0.7;
+    .circle-1 {
+        width: 500px;
+        height: 500px;
+        background: #bae6fd;
+        top: -100px;
+        left: -100px;
     }
 
-    .visual-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(30, 58, 138, 0.9), transparent);
+    .circle-2 {
+        width: 400px;
+        height: 400px;
+        background: #7dd3fc;
+        bottom: -50px;
+        right: -50px;
+        animation-delay: -5s;
     }
 
-    .visual-content {
-        position: absolute;
-        bottom: 80px;
-        left: 60px;
-        color: white;
+    .circle-3 {
+        width: 300px;
+        height: 300px;
+        background: #38bdf8;
+        top: 40%;
+        right: 20%;
+        animation-delay: -10s;
+    }
+
+    @keyframes float {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(100px, 50px) scale(1.1); }
+    }
+
+    /* Card Container */
+    .login-card-container {
+        position: relative;
         z-index: 10;
-        max-width: 80%;
-    }
-
-    .visual-content h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin: 0;
-        line-height: 1.1;
-    }
-
-    .visual-content p {
-        font-size: 1.25rem;
-        margin-top: 20px;
-        opacity: 0.9;
-        font-weight: 300;
-    }
-
-    /* Form Side */
-    .login-form-side {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         width: 100%;
-        padding: 40px 20px;
-        background-color: white;
+        max-width: 450px;
+        padding: 20px;
     }
 
-    @media (min-width: 1024px) {
-        .login-form-side {
-            width: 50%;
-            padding: 0 80px;
-        }
+    .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 32px;
+        padding: 48px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        animation: fadeInScale 0.6s ease-out;
     }
 
-    .form-wrapper {
-        width: 100%;
-        max-width: 420px;
-        margin: 0 auto;
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.95) translateY(10px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .login-header {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 32px;
     }
 
-    .logo-container {
-        display: inline-block;
-        padding: 12px;
+    .logo-wrapper {
+        width: 80px;
+        height: 80px;
         background: white;
-        border-radius: 20px;
-        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        margin-bottom: 24px;
+        border-radius: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
     }
 
-    .logo-container img {
-        height: 64px;
+    .main-logo {
+        height: 48px;
         width: auto;
     }
 
-    .login-header h2 {
-        font-size: 1.875rem;
-        font-weight: 700;
-        color: #111827;
+    .login-header h1 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: #0f172a;
         margin: 0;
+        letter-spacing: -0.025em;
     }
 
     .login-header p {
-        color: var(--text-gray);
-        margin-top: 8px;
         font-size: 0.875rem;
+        color: #64748b;
+        margin-top: 4px;
     }
 
-    /* Card Styling */
-    .filament-form-card {
-        background: white;
-        padding: 40px;
-        border-radius: 24px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        border: 1px solid #f3f4f6;
+    /* Form Styling */
+    .premium-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
 
-    .login-footer {
-        margin-top: 40px;
-        text-align: center;
-    }
-
-    .login-footer p {
-        font-size: 0.875rem;
-        color: #9ca3af;
-    }
-
-    .login-footer span {
-        font-weight: 700;
-        color: #2563eb;
-        letter-spacing: 0.05em;
-    }
-
-    .login-submit-btn {
+    .premium-submit-btn {
         width: 100%;
-        padding: 12px 24px;
-        background-color: var(--primary-blue);
+        background: var(--primary);
         color: white;
         border: none;
-        border-radius: 12px;
+        padding: 14px;
+        border-radius: 16px;
         font-weight: 600;
         font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
         cursor: pointer;
-        transition: all 0.2s;
-        margin-top: 24px;
-        box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.2);
+        transition: all 0.3s;
+        box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+        margin-top: 10px;
     }
 
-    .login-submit-btn:hover {
-        background-color: #1e40af;
-        transform: translateY(-1px);
-        box-shadow: 0 10px 15px -3px rgba(30, 58, 138, 0.3);
+    .premium-submit-btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 20px 25px -5px rgba(14, 165, 233, 0.4);
     }
 
-    .login-submit-btn:active {
+    .premium-submit-btn:active {
         transform: translateY(0);
     }
 
-    /* Dark Mode Overrides */
-    @media (prefers-color-scheme: dark) {
-        .login-form-side { background-color: #030712; }
-        .login-header h2 { color: white; }
-        .filament-form-card { 
-            background: rgba(17, 24, 39, 0.5); 
-            border-color: #1f2937;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
+    .btn-icon {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s;
+    }
+
+    .premium-submit-btn:hover .btn-icon {
+        transform: translateX(4px);
     }
 
     .login-alert-error {
         background-color: #fef2f2;
         border: 1px solid #fee2e2;
         color: #b91c1c;
-        padding: 12px 16px;
-        border-radius: 12px;
+        padding: 12px;
+        border-radius: 14px;
         font-size: 0.875rem;
         margin-bottom: 24px;
         text-align: center;
-        font-weight: 500;
-        animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        font-weight: 600;
+        animation: shake 0.5s both;
     }
 
     @keyframes shake {
-        10%, 90% { transform: translate3d(-1px, 0, 0); }
-        20%, 80% { transform: translate3d(2px, 0, 0); }
-        30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-        40%, 60% { transform: translate3d(4px, 0, 0); }
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
+
+    .login-footer {
+        margin-top: 32px;
+        text-align: center;
+    }
+
+    .login-footer p {
+        font-size: 0.75rem;
+        color: #94a3b8;
+    }
+
+    .login-footer span {
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    /* Override Filament Styles to match premium look */
+    .fi-input-wrp {
+        border-radius: 14px !important;
+        border-color: #e2e8f0 !important;
+        background: white !important;
+    }
+
+    .fi-input-wrp:focus-within {
+        border-color: var(--primary) !important;
+        box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.1) !important;
     }
 
     /* Hide Filament's own wrappers */
     .fi-layout, .fi-simple-page { display: contents !important; }
 </style>
-
-
