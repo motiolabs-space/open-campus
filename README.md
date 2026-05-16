@@ -56,6 +56,60 @@ OSCN memfasilitasi pelaporan 12 Indikator Kinerja Utama sesuai dengan kerangka *
 
 ---
 
+## 🔗 Peta Integrasi & Kesiapan (Integration Roadmap)
+
+OSCN dirancang sebagai hub sentral yang menghubungkan sistem internal kampus dengan ekosistem nasional. Berikut adalah status kesiapan integrasi:
+
+| Sistem | Tujuan Integrasi | Status | Protokol |
+| :--- | :--- | :--- | :--- |
+| **SIAKAD Internal** | Sinkronisasi data mahasiswa & nilai | ✅ Ready | REST API / Neco Adapter |
+| **Neo Feeder PDDIKTI** | Pelaporan MBKM & Kelulusan (IKU 2) | ✅ Ready | Web Service (WS) |
+| **SISTER (Kemdikbud)** | Sinkronisasi BKD & Portofolio Dosen | ✅ Ready | REST API (WS-Pro) |
+| **SIMBELMAWA** | Pelaporan Prestasi Mahasiswa | 🟡 Planned | Web Scraper / API |
+| **SINTA / Scopus** | Penarikan sitasi & publikasi dosen | ✅ Ready | Scraper / API |
+
+### 🛠️ Sistem Integrasi yang Didukung (Supported Systems)
+
+Kami menyediakan **OSCN Bridge**, sebuah layer integrasi berbasis *Adapter Pattern* yang mendukung sistem berikut secara *out-of-the-box*:
+
+#### 1. 🟦 Sistem Kemdikbudristek (Nasional)
+*   **Neo Feeder PDDIKTI**: Sinkronisasi otomatis untuk data MBKM, riset, dan prestasi mahasiswa menggunakan protokol WebService (WS).
+*   **SISTER (Integrated)**: Penarikan data portofolio dosen (BKD) untuk otomatisasi profil akademik civitas.
+*   **SIMKATMAWA / SIMBELMAWA**: Modul pelaporan prestasi kemahasiswaan (On-progress).
+
+#### 2. 🟩 Sistem Akademik (SIAKAD)
+*   **Neco Siakad**: Integrasi penuh dengan sistem SIAKAD berbasis Laravel (Ref: [oyasuryana/neo-feeder-integrator](https://github.com/oyasuryana/neo-feeder-integrator)).
+*   **Generic REST Adapter**: Memungkinkan integrasi dengan SIAKAD kustom (SIAKAD 4.0, SIAKAD Cloud) melalui pemetaan field JSON yang fleksibel.
+
+### Checklist Kesiapan Integrasi
+- [x] Schema database kompatibel dengan standar PDDIKTI.
+- [x] Middleware penanganan API SISTER (WS-Basic/Pro).
+- [x] Adapter khusus untuk Neco Siakad (Laravel architecture).
+- [/] Integrasi OAuth2 untuk SSO Kampus.
+- [x] Sistem logging integrasi (Audit Trail) untuk pemantauan sinkronisasi.
+
+---
+
+## 📚 Referensi Integrasi (Tech References)
+
+Kami menggunakan standar dan referensi dari komunitas pengembang sistem informasi kampus terbaik di Indonesia. Daftar lengkap repositori yang kami jadikan acuan (PDDIKTI, SIAKAD, Tracer Study, dll) dapat dilihat pada:
+
+👉 **[references_integration.md](references_integration.md)**
+
+---
+
+## 🗺️ Roadmap Pengembangan
+
+Strategi pengembangan OSCN dibagi menjadi 4 fase utama yang fokus pada otomatisasi pelaporan kementerian sebelum perluasan jejaring sosial:
+
+1.  **Fase 1: Compliance Foundation** - Standarisasi data IKU & Riset (Selesai).
+2.  **Fase 2: Deep Compliance Integration** - MBKM, SIPERKERMA, & SIMBELMAWA (In-Progress).
+3.  **Fase 4: AI Synergy** - Validasi bukti berbasis AI & Analitik Prediktif.
+
+Detail lengkap rencana pengembangan dapat dilihat pada [roadmap.md](roadmap.md).
+
+---
+
 ## 🛠️ Arsitektur Teknologi
 
 - **Backend**: Laravel 13.x (PHP 8.3+)
@@ -105,60 +159,6 @@ OSCN memfasilitasi pelaporan 12 Indikator Kinerja Utama sesuai dengan kerangka *
    npm run dev
    # Akses melalui http://campusnetwork.test atau http://localhost:8000
    ```
-
----
-
-## 🔗 Peta Integrasi & Kesiapan (Integration Roadmap)
-
-OSCN dirancang sebagai hub sentral yang menghubungkan sistem internal kampus dengan ekosistem nasional. Berikut adalah status kesiapan integrasi:
-
-| Sistem | Tujuan Integrasi | Status | Protokol |
-| :--- | :--- | :--- | :--- |
-| **SIAKAD Internal** | Sinkronisasi data mahasiswa & nilai | ✅ Ready | REST API / Neco Adapter |
-| **Neo Feeder PDDIKTI** | Pelaporan MBKM & Kelulusan (IKU 2) | ✅ Ready | Web Service (WS) |
-| **SISTER (Kemdikbud)** | Sinkronisasi BKD & Portofolio Dosen | ✅ Ready | REST API (WS-Pro) |
-| **SIMBELMAWA** | Pelaporan Prestasi Mahasiswa | 🟡 Planned | Web Scraper / API |
-| **SINTA / Scopus** | Penarikan sitasi & publikasi dosen | ✅ Ready | Scraper / API |
-
-### 🛠️ Sistem Integrasi yang Didukung (Supported Systems)
-
-Kami menyediakan **OSCN Bridge**, sebuah layer integrasi berbasis *Adapter Pattern* yang mendukung sistem berikut secara *out-of-the-box*:
-
-#### 1. 🟦 Sistem Kemdikbudristek (Nasional)
-*   **Neo Feeder PDDIKTI**: Sinkronisasi otomatis untuk data MBKM, riset, dan prestasi mahasiswa menggunakan protokol WebService (WS).
-*   **SISTER (Integrated)**: Penarikan data portofolio dosen (BKD) untuk otomatisasi profil akademik civitas.
-*   **SIMKATMAWA / SIMBELMAWA**: Modul pelaporan prestasi kemahasiswaan (On-progress).
-
-#### 2. 🟩 Sistem Akademik (SIAKAD)
-*   **Neco Siakad**: Integrasi penuh dengan sistem SIAKAD berbasis Laravel (Ref: [oyasuryana/neo-feeder-integrator](https://github.com/oyasuryana/neo-feeeder-integrator)).
-*   **Generic REST Adapter**: Memungkinkan integrasi dengan SIAKAD kustom (SIAKAD 4.0, SIAKAD Cloud) melalui pemetaan field JSON yang fleksibel.
-
-### Checklist Kesiapan Integrasi
-- [x] Schema database kompatibel dengan standar PDDIKTI.
-- [x] Middleware penanganan API SISTER (WS-Basic/Pro).
-- [x] Adapter khusus untuk Neco Siakad (Laravel architecture).
-- [/] Integrasi OAuth2 untuk SSO Kampus.
-- [x] Sistem logging integrasi (Audit Trail) untuk pemantauan sinkronisasi.
-
----
-
-## 📚 Referensi Integrasi (Tech References)
-
-Kami menggunakan standar dan referensi dari komunitas pengembang sistem informasi kampus terbaik di Indonesia. Daftar lengkap repositori yang kami jadikan acuan (PDDIKTI, SIAKAD, Tracer Study, dll) dapat dilihat pada:
-
-👉 **[references_integration.md](references_integration.md)**
-
----
-
-## 🗺️ Roadmap Pengembangan
-
-Strategi pengembangan OSCN dibagi menjadi 4 fase utama yang fokus pada otomatisasi pelaporan kementerian sebelum perluasan jejaring sosial:
-
-1.  **Fase 1: Compliance Foundation** - Standarisasi data IKU & Riset (Selesai).
-2.  **Fase 2: Deep Compliance Integration** - MBKM, SIPERKERMA, & SIMBELMAWA (In-Progress).
-3.  **Fase 4: AI Synergy** - Validasi bukti berbasis AI & Analitik Prediktif.
-
-Detail lengkap rencana pengembangan dapat dilihat pada [roadmap.md](roadmap.md).
 
 ---
 
