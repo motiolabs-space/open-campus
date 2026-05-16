@@ -77,6 +77,26 @@ class ResearchResource extends Resource
                             ->placeholder('Jelaskan dampak nyata dari penelitian ini bagi masyarakat atau industri...')
                             ->helperText('Contoh: Membantu meningkatkan efisiensi energi sebesar 15% pada sektor UMKM.')
                             ->columnSpanFull(),
+                    ])->columns(2),
+
+                \Filament\Forms\Components\Section::make('Kesesuaian IKU (Kementerian)')
+                    ->description('Tandai relevansi penelitian ini terhadap target IKU Nasional.')
+                    ->schema([
+                        \Filament\Forms\Components\Toggle::make('is_reputable_publication')
+                            ->label('Publikasi Internasional Bereputasi (IKU 6)')
+                            ->helperText('Centang jika luaran masuk indeks Scopus/WoS.')
+                            ->onIcon('heroicon-m-globe-alt')
+                            ->color('success'),
+                        \Filament\Forms\Components\Toggle::make('is_policy_relevant')
+                            ->label('Relevansi Kebijakan (IKU 8)')
+                            ->helperText('Centang jika hasil riset digunakan dalam penyusunan kebijakan.')
+                            ->onIcon('heroicon-m-document-text')
+                            ->color('info'),
+                        \Filament\Forms\Components\Textarea::make('policy_impact_description')
+                            ->label('Deskripsi Dampak Kebijakan')
+                            ->placeholder('Jelaskan SK/Kebijakan apa yang didukung oleh riset ini...')
+                            ->visible(fn ($get) => $get('is_policy_relevant'))
+                            ->columnSpanFull(),
                     ])->columns(2)
             ]);
     }
@@ -123,6 +143,18 @@ class ResearchResource extends Resource
                         'failed' => 'heroicon-o-x-circle',
                         default => 'heroicon-o-clock',
                     }),
+                Tables\Columns\IconColumn::make('is_reputable_publication')
+                    ->label('IKU 6')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-globe-alt')
+                    ->trueColor('success')
+                    ->tooltip('Publikasi Internasional Bereputasi'),
+                Tables\Columns\IconColumn::make('is_policy_relevant')
+                    ->label('IKU 8')
+                    ->boolean()
+                    ->trueIcon('heroicon-o-document-text')
+                    ->trueColor('info')
+                    ->tooltip('Relevansi Kebijakan'),
             ])
             ->filters([
                 \Filament\Tables\Filters\SelectFilter::make('status')
