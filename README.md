@@ -41,18 +41,18 @@ OSCN memfasilitasi pelaporan 12 Indikator Kinerja Utama sesuai dengan kerangka *
 
 | Indikator IKU | Penjelasan Singkat |
 | :--- | :--- |
-| **IKU 1: Kesiapan Lulusan** | Persentase lulusan yang bekerja, berwirausaha, atau studi lanjut. |
-| **IKU 2: Pengalaman Luar Kampus** | Mahasiswa yang mendapat pengalaman minimal 20 SKS di luar kampus. |
-| **IKU 3: Dosen di Luar Kampus** | Dosen yang berkegiatan di industri atau kampus lain yang bereputasi. |
-| **IKU 4: Praktisi Mengajar** | Keterlibatan tenaga ahli industri dalam pembelajaran di kelas. |
-| **IKU 5: Hasil Kerja Dosen** | Rekognisi internasional dan pemanfaatan hasil riset oleh masyarakat. |
-| **IKU 6: Kemitraan Prodi** | Kerjasama program studi dengan mitra kelas dunia. |
-| **IKU 7: Kelas Kolaboratif** | Metode pembelajaran yang partisipatif dan berbasis proyek (Case Method/PBL). |
-| **IKU 8: Akreditasi Internasional** | Persentase program studi yang memiliki sertifikasi/akreditasi internasional. |
-| **IKU 9: Dampak SDGs** | Kontribusi institusi terhadap Sustainable Development Goals dan masalah sosial. |
-| **IKU 10: Hilirisasi Inovasi** | Jumlah produk inovasi yang berhasil dikomersialkan atau digunakan industri. |
-| **IKU 11: Efisiensi Edukasi** | Optimalisasi proses bisnis kampus dan pemerataan akses pendidikan. |
-| **IKU 12: Inisiatif Kampus** | Program inovasi mandiri perguruan tinggi yang memberikan dampak nyata. |
+| **IKU 1: Efisiensi Edukasi** | Mengukur tingkat keberhasilan mahasiswa menyelesaikan studi tepat waktu (AEE). |
+| **IKU 2: Kesiapan Lulusan** | Persentase lulusan yang bekerja, berwirausaha, atau studi lanjut dalam 1 tahun. |
+| **IKU 3: Pengalaman Luar Kampus** | Mahasiswa yang berkegiatan (MBKM) atau berprestasi di luar program studi. |
+| **IKU 4: Rekognisi Dosen** | Dosen yang memperoleh pengakuan internasional (Publikasi, Keynote, Paten). |
+| **IKU 5: Luaran Kerja Sama** | Produk nyata, teknologi, atau lisensi hasil kerja sama dengan industri/startup. |
+| **IKU 6: Publikasi Bereputasi** | Proporsi publikasi yang masuk indeks internasional bereputasi (Scopus/WoS). |
+| **IKU 7: Dampak SDGs** | Keterlibatan institusi dalam program Sustainable Development Goals (SDG 1, 4, 17). |
+| **IKU 8: Penyusunan Kebijakan** | Keterlibatan dosen/peneliti dalam penyusunan kebijakan nasional/daerah/industri. |
+| **IKU 9: Kemandirian Finansial** | Persentase pendapatan non-pendidikan (Kerja sama industri, Royalti, Unit Usaha). |
+| **IKU 10: Zona Integritas** | Jumlah unit kerja yang mengusulkan pembangunan Zona Integritas (WBK/WBBM). |
+| **IKU 11: Tata Kelola & Integritas** | Pengelolaan organisasi yang transparan (WTP, SAKIP) dan integritas akademik. |
+| **IKU 12: Kesejahteraan Dosen** | Ketersediaan perencanaan strategis peningkatan kesejahteraan finansial dosen. |
 
 ---
 
