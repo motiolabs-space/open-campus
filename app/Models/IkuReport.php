@@ -9,8 +9,10 @@ class IkuReport extends Model
 {
     protected $fillable = [
         'iku_number',
+        'period',
         'reportable_id',
         'reportable_type',
+        'pddikti_id',
         'status',
         'correction_notes',
         'is_reviewed',

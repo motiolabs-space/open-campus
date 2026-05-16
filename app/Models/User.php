@@ -26,7 +26,12 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true; // For now, allow all logged in users to troubleshoot.
+        // Audit Hardening: Only allow specific roles to access the admin panel
+        if ($panel->getId() === 'admin') {
+            return $this->hasRole('admin') || str_ends_with($this->email, '@motiolabs.com');
+        }
+
+        return false;
     }
 
     public function academicProfile(): HasOne

@@ -46,6 +46,7 @@ class IkuReportResource extends Resource
                             ->options([
                                 'draft' => 'Draft',
                                 'synced' => 'Sudah Dikirim',
+                                'reported' => 'Dilaporkan ke Pusat',
                                 'verified' => 'Terverifikasi Pusat',
                                 'rejected' => 'Ditolak Pusat',
                             ])
@@ -97,6 +98,7 @@ class IkuReportResource extends Resource
                     ->color(fn (string $state): string => match ($state) {
                         'draft' => 'gray',
                         'synced' => 'info',
+                        'reported' => 'warning',
                         'verified' => 'success',
                         'rejected' => 'danger',
                     }),
@@ -136,18 +138,42 @@ class IkuReportResource extends Resource
                     })
             ])
             ->actions([
+                Tables\Actions\Action::make('verify_pddikti')
+                    ->label('Verify National')
+                    ->icon('heroicon-o-magnifying-glass-circle')
+                    ->color('info')
+                    ->hidden(fn ($record) => $record->status !== 'draft')
+                    ->action(function ($record, \App\Services\PddiktiBridgeService $bridge) {
+                        $result = $bridge->verifyAgainstPublicData($record);
+                        
+                        if ($result['status'] === 'verified') {
+                            \Filament\Notifications\Notification::make()
+                                ->title('Terverifikasi Nasional')
+                                ->body('Data ditemukan di database publik PDDIKTI.')
+                                ->success()
+                                ->send();
+                        } else {
+                            \Filament\Notifications\Notification::make()
+                                ->title('Belum Ditemukan')
+                                ->body('Data tidak ditemukan di database publik. Silakan periksa kembali judul atau nama dosen.')
+                                ->warning()
+                                ->send();
+                        }
+                    }),
                 Tables\Actions\Action::make('sync_now')
                     ->label('Push Single')
                     ->icon('heroicon-o-paper-airplane')
                     ->color('success')
-                    ->hidden(fn ($record) => $record->status !== 'draft' || !$record->is_reviewed)
+                    ->hidden(fn ($record) => in_array($record->status, ['reported', 'verified']) || !$record->is_reviewed)
                     ->requiresConfirmation()
-                    ->action(function ($record) {
-                        $record->update([
-                            'status' => 'synced',
-                            'reported_at' => now(),
-                        ]);
-                        \Filament\Notifications\Notification::make()->title('Data Terkirim')->success()->send();
+                    ->action(function ($record, \App\Services\PddiktiBridgeService $bridge) {
+                        $success = $bridge->pushToNeoFeeder($record);
+                        
+                        if ($success) {
+                            \Filament\Notifications\Notification::make()->title('Data Terkirim ke Neo Feeder')->success()->send();
+                        } else {
+                            \Filament\Notifications\Notification::make()->title('Gagal Sinkronisasi')->danger()->send();
+                        }
                     }),
                 Tables\Actions\EditAction::make(),
             ])
@@ -158,28 +184,26 @@ class IkuReportResource extends Resource
                         ->icon('heroicon-o-cloud-arrow-up')
                         ->color('success')
                         ->requiresConfirmation()
-                        ->action(function ($records) {
-                            $reviewedCount = $records->where('is_reviewed', true)->count();
-                            
-                            $records->each(function ($record) {
-                                if ($record->status === 'draft' && $record->is_reviewed) {
-                                    $record->update([
-                                        'status' => 'synced',
-                                        'reported_at' => now(),
-                                    ]);
+                        ->action(function ($records, \App\Services\PddiktiBridgeService $bridge) {
+                            $count = 0;
+                            foreach ($records as $record) {
+                                if ($record->is_reviewed && !in_array($record->status, ['reported', 'verified'])) {
+                                    if ($bridge->pushToNeoFeeder($record)) {
+                                        $count++;
+                                    }
                                 }
-                            });
+                            }
 
-                            if ($reviewedCount > 0) {
+                            if ($count > 0) {
                                 \Filament\Notifications\Notification::make()
-                                    ->title('Sinkronisasi Berhasil')
-                                    ->body($reviewedCount . ' data yang telah disetujui kampus berhasil dikirim.')
+                                    ->title('Sinkronisasi Massal Berhasil')
+                                    ->body($count . ' data berhasil dikirim ke Neo Feeder.')
                                     ->success()
                                     ->send();
                             } else {
                                 \Filament\Notifications\Notification::make()
                                     ->title('Gagal Mengirim')
-                                    ->body('Tidak ada data yang ditandai "Sudah Disetujui" dalam pilihan Anda.')
+                                    ->body('Tidak ada data yang memenuhi syarat pengiriman (Harus Direview & Belum Dilaporkan).')
                                     ->danger()
                                     ->send();
                             }

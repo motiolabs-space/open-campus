@@ -2,56 +2,117 @@
 
 namespace App\Services;
 
-use App\Models\IkuEvidence;
-use Illuminate\Support\Facades\Http;
+use App\Integrations\Pddikti\PublicApiAdapter;
+use App\Integrations\Pddikti\NeoFeederAdapter;
+use App\Models\IkuReport;
+use Illuminate\Support\Facades\Log;
 
 class PddiktiBridgeService
 {
-    /**
-     * Maps verified evidence to PDDIKTI "Prestasi Mahasiswa" schema.
-     */
-    public function mapEvidenceToPddikti(IkuEvidence $evidence)
-    {
-        return [
-            'id_mahasiswa' => $evidence->user->academicProfile->pddikti_id ?? 'TEMP-ID-' . $evidence->user_id,
-            'jenis_prestasi' => $this->mapIkuToPrestasiType($evidence->iku_category),
-            'tingkat_prestasi' => 'Nasional', // Defaulting for demo
-            'nama_prestasi' => $evidence->description,
-            'tahun_prestasi' => $evidence->created_at->format('Y'),
-            'penyelenggara' => 'Internal/Eksternal via OSCN',
-            'peringkat' => 1,
-        ];
-    }
+    protected $publicApi;
+    protected $neoFeeder;
 
-    private function mapIkuToPrestasiType($ikuCategory)
+    public function __construct(PublicApiAdapter $publicApi, NeoFeederAdapter $neoFeeder)
     {
-        // Simple mapping from IKU to PDDIKTI types
-        $map = [
-            2 => 'Lomba/Kompetisi',
-            3 => 'Magang/Praktik Kerja',
-            5 => 'Penelitian/Riset',
-            6 => 'Proyek Kemanusiaan',
-        ];
-
-        return $map[$ikuCategory] ?? 'Lainnya';
+        $this->publicApi = $publicApi;
+        $this->neoFeeder = $neoFeeder;
     }
 
     /**
-     * Simulates a sync to Neo Feeder API.
+     * Verify a specific IKU report against National Public Data.
      */
-    public function syncToNeoFeeder($payload)
+    public function verifyAgainstPublicData(IkuReport $report): array
     {
-        // In a real scenario, we would use the PDDIKTI_URL and TOKEN from .env
-        // return Http::withToken(config('services.pddikti.token'))
-        //     ->post(config('services.pddikti.url') . '/insertPrestasi', $payload);
-
-        // Simulation delay
-        sleep(1);
+        $target = $report->reportable;
         
+        if (!$target) {
+            return ['status' => 'error', 'message' => 'Reportable object not found.'];
+        }
+
+        // Logic varies by type
+        $type = $report->iku_type;
+        $result = ['status' => 'unverified', 'data' => null];
+
+        switch ($type) {
+            case '6': // Research/Publication
+                $lecturerName = $target->user->name ?? '';
+                if ($lecturerName) {
+                    $discoveries = $this->publicApi->discoverResearch($lecturerName);
+                    // Match by title or similarity
+                    foreach ($discoveries as $discovery) {
+                        if (str_contains(strtolower($discovery['judul'] ?? ''), strtolower($target->title))) {
+                            $result = [
+                                'status' => 'verified',
+                                'source' => 'PDDIKTI Public API',
+                                'external_id' => $discovery['id'] ?? null,
+                                'data' => $discovery
+                            ];
+                            break;
+                        }
+                    }
+                }
+                break;
+
+            case '2': // Tracer Study / Graduate Readiness
+                // Implementation for student verification
+                break;
+        }
+
+        if ($result['status'] === 'verified') {
+            $report->update([
+                'status' => 'verified',
+                'pddikti_id' => $result['external_id'] ?? $report->pddikti_id
+            ]);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Push a reviewed report to Neo Feeder.
+     */
+    public function pushToNeoFeeder(IkuReport $report): bool
+    {
+        if (!$report->is_reviewed) {
+            Log::warning("Attempted to push unreviewed report ID: {$report->id}");
+            return false;
+        }
+
+        $success = $this->neoFeeder->syncOutgoing([
+            'type' => $this->mapIkuToType($report->iku_type),
+            'record' => $this->prepareRecord($report)
+        ]);
+
+        if ($success) {
+            $report->update([
+                'status' => 'reported',
+                'reported_at' => now()
+            ]);
+        }
+
+        return $success;
+    }
+
+    protected function mapIkuToType(string $ikuType): string
+    {
+        return match ($ikuType) {
+            '3' => 'mbkm',
+            '6' => 'research',
+            '2' => 'achievement',
+            default => 'unknown',
+        };
+    }
+
+    protected function prepareRecord(IkuReport $report): array
+    {
+        $target = $report->reportable;
+        
+        // Basic mapping for Neo Feeder
         return [
-            'status' => 'success',
-            'pddikti_ref_id' => 'REF-' . uniqid(),
-            'message' => 'Data successfully pushed to Neo Feeder.'
+            'id_oscn' => $report->id,
+            'judul' => $target->title ?? $target->name ?? 'Untitled',
+            'semester' => $report->period,
+            'sk_tugas' => $target->evidence_link ?? '',
         ];
     }
 }

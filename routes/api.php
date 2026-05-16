@@ -6,8 +6,8 @@ use App\Http\Controllers\Api\TalentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Public Auth Routes
-Route::post('/login', [AuthController::class, 'login']);
+// Public Auth Routes (Throttled)
+Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1'); // 5 attempts per minute
 
 // Protected Routes
 Route::middleware('auth:sanctum')->group(function () {
