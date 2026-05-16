@@ -29,12 +29,12 @@
                 <h1>Selamat Datang</h1>
                 <p>Dashboard Kampus Terintegrasi • Bridge 2.0</p>
 
-                @if (session()->has('error') || $errors->any())
+                @if (session()->has('error') || $errors->any() || $errors->has('data.email') || $errors->has('data.password'))
                     <div class="login-alert-error">
                         @if (session()->has('error'))
                             {{ session('error') }}
                         @else
-                            Email atau password salah.
+                            Email atau password salah. Silakan coba lagi.
                         @endif
                     </div>
                 @endif
