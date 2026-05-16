@@ -12,7 +12,7 @@ use Filament\Actions\Action;
 
 class IntegrationSettings extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
     protected static ?string $navigationLabel = 'Integrasi Sistem';
     protected static ?string $title = 'Integrasi Sistem Kampus';
     protected static string | \UnitEnum | null $navigationGroup = 'Kampus';
