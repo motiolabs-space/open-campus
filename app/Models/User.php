@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Laravel\Sanctum\HasApiTokens;
 
 #[Fillable(['name', 'email', 'password', 'id_number', 'campus_id', 'role', 'avatar', 'headline', 'bio', 'impact_score', 'skills', 'verified_iku_stats', 'entry_year', 'graduation_date'])]
 #[Hidden(['password', 'remember_token'])]
