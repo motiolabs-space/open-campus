@@ -8,6 +8,19 @@
 
 ---
 
+## 📸 Visual Showcase
+
+Berikut adalah tampilan antarmuka premium OSCN Bridge 2.0:
+
+| Dashboard Utama | Halaman Login Premium |
+| :--- | :--- |
+| ![Dashboard](screenshots/dashboard.png) | ![Login](screenshots/login.png) |
+
+> [!TIP]
+> Letakkan file gambar Anda di folder `screenshots/` dengan nama yang sesuai agar muncul otomatis di GitHub.
+
+---
+
 ## 👥 Ekosistem Peran (Roles)
 
 Platform OSCN mengintegrasikan berbagai pemangku kepentingan dalam satu ekosistem:
