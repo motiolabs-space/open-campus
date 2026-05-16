@@ -37,25 +37,48 @@ class NecoSiakadAdapter implements CampusIntegrationInterface
         }
     }
 
-    public function syncIncoming(): array
+    public function syncIncoming(bool $dryRun = true): array
     {
         $log = $this->startLog('incoming', 'users');
-        $stats = ['students' => 0, 'lecturers' => 0];
+        $stats = ['created' => 0, 'updated' => 0, 'failed' => 0];
 
         try {
-            // Simulation: In reality, this would be a real HTTP call
-            // $response = Http::withToken($this->apiKey)->get($this->baseUrl . '/api/v1/sync/users');
-            
-            // For now, we simulate success with mock count
-            $stats['students'] = 50; // Mock data
-            $stats['lecturers'] = 10; // Mock data
+            // Simulation of real data from SIAKAD
+            $mockUsers = [
+                ['name' => 'Budi Santoso', 'email' => 'budi@kampus.ac.id', 'campus_id' => 'MHS001', 'role' => 'student'],
+                ['name' => 'Dr. Ani Wijaya', 'email' => 'ani@kampus.ac.id', 'campus_id' => 'DSN001', 'role' => 'lecturer'],
+            ];
 
-            $this->finishLog($log, 'success', $stats, "Successfully synced users from Neco SIAKAD.");
+            foreach ($mockUsers as $userData) {
+                if ($dryRun) {
+                    $stats['updated']++;
+                    continue;
+                }
+
+                try {
+                    $user = \App\Models\User::updateOrCreate(
+                        ['email' => $userData['email']],
+                        [
+                            'name' => $userData['name'],
+                            'id_number' => $userData['campus_id'], // Map campus_id from source to id_number in OSCN
+                            'role' => $userData['role'],
+                            'password' => bcrypt('password-siakad-default'), // Placeholder
+                        ]
+                    );
+
+                    $user->wasRecentlyCreated ? $stats['created']++ : $stats['updated']++;
+                } catch (\Exception $e) {
+                    $stats['failed']++;
+                    Log::error("Failed to sync user {$userData['email']}: " . $e->getMessage());
+                }
+            }
+
+            $status = $dryRun ? 'dry_run_success' : 'success';
+            $this->finishLog($log, $status, $stats, "Sync completed. Dry Run: " . ($dryRun ? 'Yes' : 'No'));
             
             return $stats;
         } catch (\Exception $e) {
             $this->finishLog($log, 'failed', $stats, $e->getMessage());
-            Log::error("SIAKAD Sync Failed: " . $e->getMessage());
             return $stats;
         }
     }

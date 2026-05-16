@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 use Laravel\Sanctum\HasApiTokens;
 
-#[Fillable(['name', 'email', 'password', 'campus_id', 'role', 'avatar', 'headline', 'bio', 'impact_score', 'skills', 'verified_iku_stats'])]
+#[Fillable(['name', 'email', 'password', 'id_number', 'campus_id', 'role', 'avatar', 'headline', 'bio', 'impact_score', 'skills', 'verified_iku_stats'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {

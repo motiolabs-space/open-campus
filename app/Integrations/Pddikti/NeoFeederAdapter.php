@@ -54,10 +54,10 @@ class NeoFeederAdapter implements CampusIntegrationInterface
         return null;
     }
 
-    public function syncIncoming(): array
+    public function syncIncoming(bool $dryRun = true): array
     {
         // Pull reference data (Prodi, Mata Kuliah, etc.) from Neo Feeder
-        return ['status' => 'connected', 'message' => 'Ready to pull reference data'];
+        return ['status' => 'connected', 'message' => 'Ready to pull reference data', 'dry_run' => $dryRun];
     }
 
     public function syncOutgoing($data): bool

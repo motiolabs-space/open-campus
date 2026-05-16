@@ -17,7 +17,7 @@ interface CampusIntegrationInterface
     /**
      * Synchronize data from the provider to OSCN.
      */
-    public function syncIncoming(): array;
+    public function syncIncoming(bool $dryRun = true): array;
 
     /**
      * Synchronize data from OSCN to the provider.

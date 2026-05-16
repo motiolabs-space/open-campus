@@ -29,12 +29,20 @@ class TestCampusIntegration extends Command
             }
 
             if ($this->confirm("Do you want to run a dry-run sync?")) {
-                $stats = $integration->syncIncoming();
+                $stats = $integration->syncIncoming(true);
                 $this->table(['Metric', 'Value'], [
-                    ['Status', 'Success'],
-                    ['Provider', $integration->getName()],
-                    ['Sync Stats', json_encode($stats)]
+                    ['Status', 'Dry Run Success'],
+                    ['Stats', json_encode($stats)]
                 ]);
+
+                if ($this->confirm("Dry-run finished. Do you want to PERFORM REAL SYNC now?")) {
+                    $this->warn("Performing real database modification...");
+                    $stats = $integration->syncIncoming(false);
+                    $this->table(['Metric', 'Value'], [
+                        ['Status', 'REAL SYNC SUCCESS'],
+                        ['Stats', json_encode($stats)]
+                    ]);
+                }
             }
 
         } catch (\Exception $e) {
