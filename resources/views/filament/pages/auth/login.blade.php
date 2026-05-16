@@ -24,7 +24,7 @@
             </div>
 
             <div class="filament-form-card">
-                <x-filament-panels::notifications />
+                @livewire('notifications')
 
                 @if (session()->has('error') || $errors->any())
                     <div class="login-alert-error">
