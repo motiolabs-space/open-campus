@@ -1,5 +1,15 @@
 @filamentStyles
 @filamentScripts
+<meta name="title" content="{{ env('SEO_TITLE') }}">
+<meta name="description" content="{{ env('SEO_DESCRIPTION') }}">
+<meta name="keywords" content="{{ env('SEO_KEYWORDS') }}">
+<meta name="author" content="{{ env('SEO_AUTHOR') }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ url()->current() }}">
+<meta property="og:title" content="{{ env('SEO_TITLE') }}">
+<meta property="og:description" content="{{ env('SEO_DESCRIPTION') }}">
+<meta property="og:image" content="{{ env('SEO_OG_IMAGE') }}">
+
 <link rel="icon" href="data:;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAAAAB3u9SAAAAAnRSTlMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN793KAAAAFklEQVR4AWP4z/AfDBgYmBggDAf/f2CA8P8/A4TBAKkBCAEAIQADAIQA" />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
 
