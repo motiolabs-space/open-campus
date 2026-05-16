@@ -130,11 +130,9 @@ OSCN dirancang sebagai hub sentral yang menghubungkan sistem internal kampus den
 
 ## 📚 Referensi Integrasi (Tech References)
 
-Kami menggunakan beberapa standar dan referensi dari komunitas pengembang sistem informasi kampus di Indonesia:
+Kami menggunakan standar dan referensi dari komunitas pengembang sistem informasi kampus terbaik di Indonesia. Daftar lengkap repositori yang kami jadikan acuan (PDDIKTI, SIAKAD, Tracer Study, dll) dapat dilihat pada:
 
-*   **PDDIKTI Neo Feeder**: [neo-feeder-integrator](https://github.com/oyasuryana/neo-feeder-integrator) - Standar sinkronisasi data akademik massal.
-*   **SISTER API**: [sister-php-client](https://github.com/mimbar/sistah) - Referensi implementasi client API SISTER Kemendikbud.
-*   **SIAKAD Connector**: [siakad-api-standard](https://github.com/sevina/siakad-api) - Referensi standar API untuk sistem informasi akademik.
+👉 **[references_integration.md](references_integration.md)**
 
 ---
 
