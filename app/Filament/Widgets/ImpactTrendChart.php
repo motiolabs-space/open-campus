@@ -11,8 +11,8 @@ use Flowframe\Trend\TrendValue;
 
 class ImpactTrendChart extends ChartWidget
 {
-    protected static ?string $heading = 'Pertumbuhan Dampak (Impact Growth Trend)';
-    protected static string $color = 'success';
+    protected ?string $heading = 'Pertumbuhan Dampak (Impact Growth Trend)';
+    protected string $color = 'success';
     protected int | string | array $columnSpan = 'full';
 
     protected function getData(): array
