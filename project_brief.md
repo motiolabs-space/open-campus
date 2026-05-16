@@ -11,15 +11,16 @@
     -   Modul **BKD (SISTER)**: Siap mengelola 4 pilar Dharma dengan sinkronisasi simulasi.
     -   Modul **MBKM (PDDIKTI)**: Mendukung 8 jenis aktivitas MBKM dengan validasi 20 SKS otomatis.
     -   Modul **Prestasi (SIMBELMAWA)**: Pengelolaan prestasi mahasiswa yang terintegrasi.
-2.  **Shadow Reporting Engine**:
+2.  **OSCN Integration Bridge (Adapter Pattern)**:
+    -   **Dual-Track PDDikti**: Mendukung pelaporan resmi via Neo Feeder (WS) dan verifikasi instan via Public Discovery API.
+    -   **Integration Management**: Dashboard khusus Admin untuk mengelola kredensial sistem eksternal (SIAKAD, PDDIKTI) secara terpusat dan aman.
+    -   **Audit Trail Sync**: Pencatatan log otomatis untuk setiap aktivitas sinkronisasi data antar sistem.
+3.  **Shadow Reporting Engine**:
     -   **Data Harvesting**: Sistem otomatis mendeteksi hashtag (#prestasi, #riset, #magang) untuk membuat draf pelaporan secara instan.
     -   **Impact Extraction**: Ekstraksi narasi dampak (Outcome) dari teks postingan menggunakan kata kunci strategis (Smart Matching).
-3.  **Impact-Driven Analytics**:
-    -   **Impact Dashboard**: Visualisasi kontribusi riil kampus terhadap SDGs dan jangkauan industri/masyarakat.
+4.  **Impact-Driven Analytics**:
+    -   **Premium Impact Dashboard**: Visualisasi kontribusi riil kampus terhadap SDGs dengan desain Glassmorphism dan grafik tren dinamis.
     -   **Latest Impact Stories**: Feed khusus bagi pimpinan untuk melihat narasi keberhasilan civitas, bukan sekadar angka statistik.
-4.  **Premium Social Experience**:
-    -   **Verified Impact Badge**: Pengakuan visual untuk postingan yang memberikan kontribusi nyata.
-    -   **Compliance Assistant**: AI-driven sidebar yang memandu civitas untuk berkontribusi pada IKU institusi secara natural.
 
 ---
 
@@ -29,10 +30,12 @@
 *   Membangun fondasi modul IKU (1-8).
 *   Integrasi skema pelaporan SISTER, PDDIKTI, dan SIMBELMAWA.
 *   Dashboard pimpinan untuk monitoring capaian angka.
+*   **Implementasi OSCN Bridge & Credential Manager.**
 
 #### **Fase 2: Budaya Berdampak (IN PROGRESS)**
 *   Implementasi **Impact Narrative** (Fokus pada Outcome, bukan Output).
 *   Penguatan AI Harvesting untuk akurasi data yang lebih tinggi tanpa intervensi manual.
+*   **Universal SIAKAD Connector**: Memperluas adapter untuk berbagai vendor SIAKAD di Indonesia.
 *   Social Gamification: Sistem reputasi berdasarkan kontribusi dampak civitas.
 
 #### **Fase 3: Sinergi Industri & Global (Q3 2026)**

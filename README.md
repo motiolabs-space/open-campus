@@ -4,7 +4,7 @@
 [![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com)
 
-**Open Source Campus Network (OSCN)** adalah platform ekosistem akademik modern yang dirancang untuk menghubungkan Mahasiswa, Dosen, Alumni, dan Industri dalam satu jaringan yang cerdas dan terintegrasi untuk mendukung penuh program **IKU PT dari Kemendiktisaintek Berdampak**. Dibangun dengan pondasi **Laravel 13 (AI-Native)**, platform ini mengedepankan kolaborasi, transparansi data akademik, dan efisiensi pelaporan berbasis AI untuk transformasi pendidikan tinggi Indonesia.
+**Open Source Campus Network (OSCN)** adalah platform ekosistem akademik modern yang dirancang untuk menghubungkan Mahasiswa, Dosen, Alumni, dan Industri dalam satu jaringan yang cerdas dan terintegrasi untuk mendukung penuh program **IKU PT dari Kemendiktisaintek Berdampak**. Platform ini dilengkapi dengan **OSCN Bridge**, sebuah infrastruktur integrasi canggih yang menghubungkan sistem internal kampus (SIAKAD) dengan sistem nasional (PDDIKTI, SISTER, SIMBELMAWA) secara otomatis. Dibangun dengan pondasi **Laravel 13 (AI-Native)**, platform ini mengedepankan kolaborasi, transparansi data akademik, dan efisiensi pelaporan berbasis AI untuk transformasi pendidikan tinggi Indonesia.
 
 ---
 
