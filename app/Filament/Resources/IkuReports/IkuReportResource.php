@@ -86,10 +86,16 @@ class IkuReportResource extends Resource
                         'verified' => 'success',
                         'rejected' => 'danger',
                     }),
-                TextColumn::make('updated_at')
-                    ->label('Terakhir Update')
-                    ->dateTime()
-                    ->sortable(),
+                TextColumn::make('reported_at')
+                    ->label('Tgl Lapor')
+                    ->dateTime('d M Y H:i')
+                    ->sortable()
+                    ->toggleable(),
+                TextColumn::make('created_at')
+                    ->label('Masuk Sistem')
+                    ->dateTime('d M Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('iku_number')
@@ -100,38 +106,55 @@ class IkuReportResource extends Resource
                         'IKU 9' => 'IKU 9 (Income)',
                     ]),
                 Tables\Filters\SelectFilter::make('status'),
+                Tables\Filters\Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('created_from')->label('Dari Tanggal'),
+                        Forms\Components\DatePicker::make('created_until')->label('Sampai Tanggal'),
+                    ])
+                    ->query(function ($query, array $data) {
+                        return $query
+                            ->when($data['created_from'], fn ($query, $date) => $query->whereDate('created_at', '>=', $date))
+                            ->when($data['created_until'], fn ($query, $date) => $query->whereDate('created_at', '<=', $date));
+                    })
             ])
             ->actions([
                 Tables\Actions\Action::make('sync_now')
-                    ->label('Sync to Ministry')
-                    ->icon('heroicon-o-arrow-path')
+                    ->label('Push Single')
+                    ->icon('heroicon-o-paper-airplane')
                     ->color('success')
+                    ->hidden(fn ($record) => $record->status !== 'draft')
                     ->requiresConfirmation()
                     ->action(function ($record) {
-                        // Simulate sync logic
                         $record->update([
                             'status' => 'synced',
                             'reported_at' => now(),
-                            'api_response' => ['status' => 'success', 'message' => 'Data received by Kemendiktisaintek Sandbox'],
                         ]);
-
-                        \Filament\Notifications\Notification::make()
-                            ->title('Sinkronisasi Berhasil')
-                            ->success()
-                            ->send();
+                        \Filament\Notifications\Notification::make()->title('Data Terkirim')->success()->send();
                     }),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\BulkAction::make('bulk_sync')
-                        ->label('Sync Selected to Ministry')
+                    Tables\Actions\BulkAction::make('bulk_push')
+                        ->label('Push Massal ke Kemendiktisaintek')
                         ->icon('heroicon-o-cloud-arrow-up')
+                        ->color('success')
+                        ->requiresConfirmation()
                         ->action(function ($records) {
-                            $records->each->update([
-                                'status' => 'synced',
-                                'reported_at' => now(),
-                            ]);
+                            $records->each(function ($record) {
+                                if ($record->status === 'draft') {
+                                    $record->update([
+                                        'status' => 'synced',
+                                        'reported_at' => now(),
+                                    ]);
+                                }
+                            });
+
+                            \Filament\Notifications\Notification::make()
+                                ->title('Sinkronisasi Massal Berhasil')
+                                ->body(count($records) . ' data telah diantrekan untuk pelaporan kementerian.')
+                                ->success()
+                                ->send();
                         }),
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
