@@ -22,6 +22,15 @@ Sistem pelaporan data akademik ke pangkalan data nasional.
     *Tech:* Yii2 Framework.  
     *Rekomendasi:* Referensi logic Insert/Update/Delete data via WS.
 
+*   **[ridwaanhall/api-pddikti](https://github.com/ridwaanhall/api-pddikti)** — ⭐ **NEW / DISCOVERY**  
+    *Fungsi:* RESTful API Wrapper untuk Data Publik PDDIKTI (Search & Discovery).  
+    *Tech:* Python, FastAPI.  
+    *Rekomendasi:* Gunakan untuk fitur **Instant Verification** profil dosen, riset, dan prestasi mahasiswa tanpa beban Neo Feeder.
+
+*   **[ridwaanhall/PDDikti-Docs](https://github.com/ridwaanhall/PDDikti-Docs)**  
+    *Fungsi:* Dokumentasi teknis endpoint publik PDDikti.  
+    *Rekomendasi:* Acuan utama pemetaan field data riset, publikasi, dan riwayat studi.
+
 ---
 
 ## 🏫 2. SIAKAD (Sistem Informasi Akademik)

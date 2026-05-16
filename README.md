@@ -73,7 +73,8 @@ OSCN dirancang sebagai hub sentral yang menghubungkan sistem internal kampus den
 Kami menyediakan **OSCN Bridge**, sebuah layer integrasi berbasis *Adapter Pattern* yang mendukung sistem berikut secara *out-of-the-box*:
 
 #### 1. 🟦 Sistem Kemdikbudristek (Nasional)
-*   **Neo Feeder PDDIKTI**: Sinkronisasi otomatis untuk data MBKM, riset, dan prestasi mahasiswa menggunakan protokol WebService (WS).
+*   **Neo Feeder PDDIKTI (Reporting)**: Sinkronisasi otomatis untuk data MBKM, riset, dan prestasi mahasiswa menggunakan protokol WebService (WS). Digunakan untuk pelaporan resmi institusi.
+*   **PDDikti Discovery API (Real-time)**: Integrasi dengan API publik (Ref: `ridwaanhall/api-pddikti`) untuk verifikasi instan profil dosen, riset nasional, dan riwayat mahasiswa tanpa melalui antrean Neo Feeder.
 *   **SISTER (Integrated)**: Penarikan data portofolio dosen (BKD) untuk otomatisasi profil akademik civitas.
 *   **SIMKATMAWA / SIMBELMAWA**: Modul pelaporan prestasi kemahasiswaan (On-progress).
 
