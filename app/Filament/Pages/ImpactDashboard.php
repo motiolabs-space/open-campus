@@ -19,6 +19,7 @@ class ImpactDashboard extends Page
     {
         return [
             ImpactStatsOverview::class,
+            \App\Filament\Widgets\ImpactTrendChart::class,
             SdgDistributionChart::class,
             \App\Filament\Widgets\LatestImpactStories::class,
         ];
