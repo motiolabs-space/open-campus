@@ -294,37 +294,45 @@
         color: var(--primary-dark);
     }
 
-    /* Override Filament Styles to match premium look */
+    /* Aggressive Form Overrides */
+    .glass-card label,
+    .glass-card span:not(.premium-submit-btn span),
+    .glass-card p:not(.login-hint),
+    .glass-card div:not(.logo-wrapper) {
+        color: #0f172a !important; /* Force dark text for almost everything inside card */
+    }
+
     .fi-input-wrp {
         border-radius: 14px !important;
-        border-color: #e2e8f0 !important;
+        border-color: #cbd5e1 !important; /* Slightly darker border for better visibility */
         background: white !important;
     }
 
     .fi-input-wrp input {
-        color: #0f172a !important; /* Dark slate text */
-    }
-
-    .fi-input-wrp input::placeholder {
-        color: #94a3b8 !important;
-    }
-
-    .fi-fo-field-wrp-label label, 
-    .fi-checkbox-label,
-    .fi-simple-page-header-subheading,
-    .fi-fo-field-wrp-helper-text {
-        color: #334155 !important; /* Dark slate */
-        font-weight: 600 !important;
+        color: #0f172a !important; 
+        background: transparent !important;
     }
 
     .fi-checkbox-input {
-        border-color: #cbd5e1 !important;
+        appearance: checkbox !important; /* Force browser default look if custom is invisible */
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+        border: 2px solid #94a3b8 !important;
+        border-radius: 6px !important;
         background-color: white !important;
+        cursor: pointer !important;
     }
 
     .fi-checkbox-input:checked {
         background-color: var(--primary) !important;
-        border-color: var(--primary) !important;
+    }
+
+    /* Target specifically Filament labels */
+    .fi-fo-field-wrp-label label,
+    .fi-checkbox-label {
+        color: #1e293b !important;
+        font-weight: 600 !important;
+        opacity: 1 !important;
     }
 
     .fi-input-wrp:focus-within {
