@@ -43,6 +43,8 @@
                         </svg>
                     </button>
                 </form>
+
+                <p class="login-hint">Gunakan kredensial institusi untuk akses dashboard.</p>
             </div>
 
             <div class="login-footer">
@@ -258,6 +260,14 @@
     .login-footer p {
         font-size: 0.75rem;
         color: #94a3b8;
+    }
+
+    .login-hint {
+        text-align: center;
+        font-size: 0.8rem;
+        color: #cbd5e1; /* Very faint gray */
+        margin-top: 16px;
+        font-weight: 400;
     }
 
     .login-footer span {
