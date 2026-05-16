@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Log;
 
 class NeoFeederAdapter implements CampusIntegrationInterface
 {
+    use \App\Integrations\Concerns\LogsIntegrations;
+
     protected $url;
     protected $username;
     protected $password;
