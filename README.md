@@ -114,17 +114,31 @@ OSCN dirancang sebagai hub sentral yang menghubungkan sistem internal kampus den
 
 | Sistem | Tujuan Integrasi | Status | Protokol |
 | :--- | :--- | :--- | :--- |
-| **SIAKAD Internal** | Sinkronisasi data mahasiswa & nilai | 🟡 Planned | REST API / Direct DB |
+| **SIAKAD Internal** | Sinkronisasi data mahasiswa & nilai | ✅ Ready | REST API / Neco Adapter |
 | **Neo Feeder PDDIKTI** | Pelaporan MBKM & Kelulusan (IKU 2) | ✅ Ready | Web Service (WS) |
 | **SISTER (Kemdikbud)** | Sinkronisasi BKD & Portofolio Dosen | ✅ Ready | REST API (WS-Pro) |
 | **SIMBELMAWA** | Pelaporan Prestasi Mahasiswa | 🟡 Planned | Web Scraper / API |
 | **SINTA / Scopus** | Penarikan sitasi & publikasi dosen | ✅ Ready | Scraper / API |
 
+### 🛠️ Sistem Integrasi yang Didukung (Supported Systems)
+
+Kami menyediakan **OSCN Bridge**, sebuah layer integrasi berbasis *Adapter Pattern* yang mendukung sistem berikut secara *out-of-the-box*:
+
+#### 1. 🟦 Sistem Kemdikbudristek (Nasional)
+*   **Neo Feeder PDDIKTI**: Sinkronisasi otomatis untuk data MBKM, riset, dan prestasi mahasiswa menggunakan protokol WebService (WS).
+*   **SISTER (Integrated)**: Penarikan data portofolio dosen (BKD) untuk otomatisasi profil akademik civitas.
+*   **SIMKATMAWA / SIMBELMAWA**: Modul pelaporan prestasi kemahasiswaan (On-progress).
+
+#### 2. 🟩 Sistem Akademik (SIAKAD)
+*   **Neco Siakad**: Integrasi penuh dengan sistem SIAKAD berbasis Laravel (Ref: [oyasuryana/neo-feeder-integrator](https://github.com/oyasuryana/neo-feeeder-integrator)).
+*   **Generic REST Adapter**: Memungkinkan integrasi dengan SIAKAD kustom (SIAKAD 4.0, SIAKAD Cloud) melalui pemetaan field JSON yang fleksibel.
+
 ### Checklist Kesiapan Integrasi
 - [x] Schema database kompatibel dengan standar PDDIKTI.
 - [x] Middleware penanganan API SISTER (WS-Basic/Pro).
+- [x] Adapter khusus untuk Neco Siakad (Laravel architecture).
 - [/] Integrasi OAuth2 untuk SSO Kampus.
-- [ ] Modul sinkronisasi otomatis via Task Scheduling.
+- [x] Sistem logging integrasi (Audit Trail) untuk pemantauan sinkronisasi.
 
 ---
 
