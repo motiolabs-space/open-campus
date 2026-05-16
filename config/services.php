@@ -15,7 +15,18 @@ return [
     */
 
     'postmark' => [
-        'key' => env('POSTMARK_API_KEY'),
+        'token' => env('POSTMARK_TOKEN'),
+    ],
+
+    'siakad' => [
+        'url' => env('SIAKAD_URL', 'https://siakad.test'),
+        'key' => env('SIAKAD_KEY'),
+    ],
+
+    'pddikti' => [
+        'url' => env('PDDIKTI_URL', 'http://localhost:8082/ws'),
+        'username' => env('PDDIKTI_USERNAME'),
+        'password' => env('PDDIKTI_PASSWORD'),
     ],
 
     'resend' => [
