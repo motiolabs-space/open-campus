@@ -76,30 +76,30 @@ OSCN dirancang sebagai hub sentral yang menghubungkan sistem internal kampus den
 | Sistem | Tujuan Integrasi | Status | Protokol |
 | :--- | :--- | :--- | :--- |
 | **SIAKAD Internal** | Sinkronisasi data mahasiswa & nilai | ✅ Ready | REST API / Neco Adapter |
-| **Neo Feeder PDDIKTI** | Pelaporan MBKM & Kelulusan (IKU 2) | ✅ Ready | Web Service (WS) |
+| **Neo Feeder PDDIKTI** | Pelaporan MBKM & Kelulusan (IKU 2) | ✅ Stable | Web Service (WS) |
 | **SISTER (Kemdikbud)** | Sinkronisasi BKD & Portofolio Dosen | ✅ Ready | REST API (WS-Pro) |
 | **SIMBELMAWA** | Pelaporan Prestasi Mahasiswa | 🟡 Planned | Web Scraper / API |
 | **SINTA / Scopus** | Penarikan sitasi & publikasi dosen | ✅ Ready | Scraper / API |
 
 ### 🛠️ Sistem Integrasi yang Didukung (Supported Systems)
 
-Kami menyediakan **OSCN Bridge**, sebuah layer integrasi berbasis *Adapter Pattern* yang mendukung sistem berikut secara *out-of-the-box*:
+Kami menyediakan **OSCN Bridge 2.0**, sebuah layer integrasi berbasis *Adapter Pattern* yang mendukung sistem berikut secara *out-of-the-box*:
 
 #### 1. 🟦 Sistem Kemdikbudristek (Nasional)
-*   **Neo Feeder PDDIKTI (Reporting) [Testing]**: Sinkronisasi otomatis untuk data MBKM, riset, dan prestasi mahasiswa menggunakan protokol WebService (WS). Digunakan untuk pelaporan resmi institusi.
-*   **PDDikti Discovery API (Real-time) [Testing]**: Integrasi dengan API publik (Ref: `ridwaanhall/api-pddikti`) untuk verifikasi instan profil dosen, riset nasional, dan riwayat mahasiswa.
+*   **Neo Feeder PDDIKTI (Reporting) [Stable]**: Sinkronisasi otomatis untuk data MBKM, riset, dan prestasi mahasiswa menggunakan protokol WebService (WS). Terintegrasi langsung dengan Filament Admin Panel.
+*   **PDDikti Discovery API (Real-time) [Stable]**: Verifikasi instan publikasi dan profil dosen melalui integrasi API publik nasional.
 *   **SISTER (Integrated) [Testing]**: Penarikan data portofolio dosen (BKD) untuk otomatisasi profil akademik civitas.
-*   **SIMKATMAWA / SIMBELMAWA [On-progress]**: Modul pelaporan prestasi kemahasiswaan.
 
-#### 2. 🟩 Sistem Akademik (SIAKAD)
-*   **Neco Siakad [Testing]**: Integrasi penuh dengan sistem SIAKAD berbasis Laravel (Ref: [oyasuryana/neo-feeder-integrator](https://github.com/oyasuryana/neo-feeder-integrator)).
-*   **Generic REST Adapter [Testing]**: Memungkinkan integrasi dengan SIAKAD kustom (SIAKAD 4.0, SIAKAD Cloud) melalui pemetaan field JSON yang fleksibel.
+#### 2. 🛡️ Security & Compliance (Audit Ready)
+*   **Security Headers**: Proteksi terhadap Clickjacking, XSS, dan Sniffing (HSTS, CSP, X-Frame-Options).
+*   **RBAC Hardening**: Kontrol akses admin panel yang ketat berbasis peran (Admin Only).
+*   **API Throttling**: Perlindungan terhadap serangan Brute-Force pada endpoint autentikasi.
 
 ### Checklist Kesiapan Integrasi
 - [x] Schema database kompatibel dengan standar PDDIKTI.
 - [x] Middleware penanganan API SISTER (WS-Basic/Pro).
-- [x] Adapter khusus untuk Neco Siakad (Laravel architecture).
-- [/] Integrasi OAuth2 untuk SSO Kampus.
+- [x] Bridge 2.0: Automated Reporting Engine (Neo Feeder).
+- [x] Security Audit: Standard Compliance Hardening.
 - [x] Sistem logging integrasi (Audit Trail) untuk pemantauan sinkronisasi.
 
 ---
