@@ -108,6 +108,36 @@ OSCN memfasilitasi pelaporan 12 Indikator Kinerja Utama sesuai dengan kerangka *
 
 ---
 
+## 🔗 Peta Integrasi & Kesiapan (Integration Roadmap)
+
+OSCN dirancang sebagai hub sentral yang menghubungkan sistem internal kampus dengan ekosistem nasional. Berikut adalah status kesiapan integrasi:
+
+| Sistem | Tujuan Integrasi | Status | Protokol |
+| :--- | :--- | :--- | :--- |
+| **SIAKAD Internal** | Sinkronisasi data mahasiswa & nilai | 🟡 Planned | REST API / Direct DB |
+| **Neo Feeder PDDIKTI** | Pelaporan MBKM & Kelulusan (IKU 2) | ✅ Ready | Web Service (WS) |
+| **SISTER (Kemdikbud)** | Sinkronisasi BKD & Portofolio Dosen | ✅ Ready | REST API (WS-Pro) |
+| **SIMBELMAWA** | Pelaporan Prestasi Mahasiswa | 🟡 Planned | Web Scraper / API |
+| **SINTA / Scopus** | Penarikan sitasi & publikasi dosen | ✅ Ready | Scraper / API |
+
+### Checklist Kesiapan Integrasi
+- [x] Schema database kompatibel dengan standar PDDIKTI.
+- [x] Middleware penanganan API SISTER (WS-Basic/Pro).
+- [/] Integrasi OAuth2 untuk SSO Kampus.
+- [ ] Modul sinkronisasi otomatis via Task Scheduling.
+
+---
+
+## 📚 Referensi Integrasi (Tech References)
+
+Kami menggunakan beberapa standar dan referensi dari komunitas pengembang sistem informasi kampus di Indonesia:
+
+*   **PDDIKTI Neo Feeder**: [neo-feeder-integrator](https://github.com/oyasuryana/neo-feeder-integrator) - Standar sinkronisasi data akademik massal.
+*   **SISTER API**: [sister-php-client](https://github.com/mimbar/sistah) - Referensi implementasi client API SISTER Kemendikbud.
+*   **SIAKAD Connector**: [siakad-api-standard](https://github.com/sevina/siakad-api) - Referensi standar API untuk sistem informasi akademik.
+
+---
+
 ## 🗺️ Roadmap Pengembangan
 
 Strategi pengembangan OSCN dibagi menjadi 4 fase utama yang fokus pada otomatisasi pelaporan kementerian sebelum perluasan jejaring sosial:
