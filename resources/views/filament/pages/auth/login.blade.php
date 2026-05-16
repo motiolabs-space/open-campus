@@ -24,6 +24,18 @@
             </div>
 
             <div class="filament-form-card">
+                <x-filament-panels::notifications />
+
+                @if (session()->has('error') || $errors->any())
+                    <div class="login-alert-error">
+                        @if (session()->has('error'))
+                            {{ session('error') }}
+                        @else
+                            Email atau password salah. Silakan coba lagi.
+                        @endif
+                    </div>
+                @endif
+
                 <form wire:submit.prevent="authenticate" class="space-y-8">
                     {{ $this->form }}
 
@@ -226,6 +238,26 @@
             border-color: #1f2937;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
+    }
+
+    .login-alert-error {
+        background-color: #fef2f2;
+        border: 1px solid #fee2e2;
+        color: #b91c1c;
+        padding: 12px 16px;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        margin-bottom: 24px;
+        text-align: center;
+        font-weight: 500;
+        animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    }
+
+    @keyframes shake {
+        10%, 90% { transform: translate3d(-1px, 0, 0); }
+        20%, 80% { transform: translate3d(2px, 0, 0); }
+        30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+        40%, 60% { transform: translate3d(4px, 0, 0); }
     }
 
     /* Hide Filament's own wrappers */
